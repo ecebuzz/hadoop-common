@@ -252,6 +252,7 @@ class Child {
             try {
               // use job-specified working directory
               FileSystem.get(job).setWorkingDirectory(job.getWorkingDirectory());
+              //swm: finally the map/reduce task got run, overloaded by MapTask, ReduceTask
               taskFinal.run(job, umbilical);        // run the task
             } finally {
               TaskLog.syncLogs
