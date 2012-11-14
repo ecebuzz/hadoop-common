@@ -23,6 +23,7 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.text.NumberFormat;
 
+
 class JVMId extends ID {
   boolean isMap;
   JobID jobId;
@@ -53,6 +54,13 @@ class JVMId extends ID {
   public JobID getJobId() {
     return jobId;
   }
+  
+  // added by swm
+  public void setJobId(JobID jobId) {
+	  this.jobId = jobId;
+  }
+  // end of swm
+  
   public boolean equals(Object o) {
     if(o == null)
       return false;

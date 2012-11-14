@@ -203,6 +203,9 @@ class JvmManager {
     Map <JVMId, String> jvmIdToPid = 
       new HashMap<JVMId, String>();
     
+    //added by swm
+    boolean enableMapCacheReuse = true;
+    //end of add
     int maxJvms;
     boolean isMap;
     private final long sleeptimeBeforeSigkill;
@@ -340,8 +343,37 @@ class JvmManager {
       // (the order of return is in the order above)
       int numJvmsSpawned = jvmIdToRunner.size();
       JvmRunner runnerToKill = null;
+      
+      // added by swm
+      if (t.getTask().isMapTask() && enableMapCacheReuse) {
+    	  // favor reusing map jvms of different jobs that enable cache
+    	  // try not to kill idle jvm which has cached data
+    	  Iterator<Map.Entry<JVMId, JvmRunner>> jvmIter = jvmIdToRunner.entrySet().iterator();
+    	  
+    	  while (jvmIter.hasNext()) {
+    		  JvmRunner jvmRunner = jvmIter.next().getValue();
+    		  JobID jId = jvmRunner.jvmId.getJobId();
+    		  
+     		  // check whether it is possible to reuse jvm of a different job
+    		  if (!jId.equals(jobId) && !jvmRunner.isBusy() &&
+    				  jvmRunner.ranAll() && jvmRunner.canReuseCache()) {
+    			  // change the job id of this jvm to the new job id
+    			  jvmRunner.jobIds.add(jobId);
+    			  jvmRunner.currentJobIdIndex++;
+    			  jvmRunner.jvmId.setJobId(jobId);
+    			  // reuse the JVM
+    			  setRunningTaskForJvm(jvmRunner.jvmId, t); 
+    			  LOG.info("Map cache enabled. No new JVM spawned for jobId/taskid: "
+    					  + jobId + "/" + t.getTask().getTaskID()
+    					  + ". Attempting to reuse the cache of: " + jvmRunner.jvmId);
+    			  return;
+    		  }
+    	  }
+      }     
+      // end of added
+
       if (numJvmsSpawned >= maxJvms) {
-        //go through the list of JVMs for all jobs.
+    	//go through the list of JVMs for all jobs.
         Iterator<Map.Entry<JVMId, JvmRunner>> jvmIter = 
           jvmIdToRunner.entrySet().iterator();
         
@@ -365,16 +397,26 @@ class JvmManager {
           //     currently not busy
           //But in both the above cases, we see if we can assign the current
           //task to an idle JVM (hence we continue the loop even on a match)
+          
           if ((jId.equals(jobId) && jvmRunner.ranAll()) ||
               (!jId.equals(jobId) && !jvmRunner.isBusy())) {
             runnerToKill = jvmRunner;
             spawnNewJvm = true;
-          }
+          }     
         }
       } else {
         spawnNewJvm = true;
       }
-
+/*
+ * 
+ *           //added by swm
+          // To do: make sure jvmRunner is not GCed
+          if ((jId.equals(jobId) && jvmRunner.ranAll() && !jvmRunner.canReuseCache())) {
+        	  runnerToKill = jvmRunner;
+        	  spawnNewJvm = true;
+          }
+          //end of add
+ */
       if (spawnNewJvm) {
         if (runnerToKill != null) {
           LOG.info("Killing JVM: " + runnerToKill.jvmId);
@@ -443,11 +485,22 @@ class JvmManager {
 
     class JvmRunner extends Thread {
       JvmEnv env;
-      volatile boolean killed = false;
+      volatile boolean killed = false;   
       volatile int numTasksRan;
+      //added by swm
+      volatile int numTasksRanForOriginalJob;
+      //end of add
+      
       final int numTasksToRun;
+
+      
       JVMId jvmId;
       volatile boolean busy = true;
+      //added by swm
+      Vector<JobID> jobIds;
+      int currentJobIdIndex;
+      volatile boolean canReuseCache = true;
+      // end of add
       private ShellCommandExecutor shexec; // shell terminal for running the task
       private Task firstTask;
 
@@ -459,6 +512,11 @@ class JvmManager {
 
       public JvmRunner(JvmEnv env, JobID jobId, Task firstTask) {
         this.env = env;
+        //added by swm
+        jobIds = new Vector<JobID>();
+        jobIds.add(jobId);
+        currentJobIdIndex = 0;
+        //end of add
         this.jvmId = new JVMId(jobId, isMap, rand.nextInt());
         this.numTasksToRun = env.conf.getNumTasksToExecutePerJvm();
         this.firstTask = firstTask;
@@ -576,11 +634,23 @@ class JvmManager {
       public void taskRan() {
         busy = false;
         numTasksRan++;
+        // added by swm
+//        if(this.) {
+//        	numTasksRanForOriginalJob++;
+//        }
+        // end of add
       }
       
       public boolean ranAll() {
         return(numTasksRan == numTasksToRun);
       }
+      // begin of swm
+      public boolean canReuseCache() {
+    	  //To do: add the logic to determine whether it is possible to reuse cache
+    	  //add a private member to the JvmRunner
+    	  return canReuseCache;
+      }
+      // end of swm
       public void setBusy(boolean busy) {
         this.busy = busy;
       }

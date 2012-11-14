@@ -43,7 +43,7 @@ myName          = re.sub(".*/", "", myName)
 
 reVersion = re.compile(".*(\d+_\d+).*")
 
-VERSION = '$HeadURL$'
+VERSION = '$HeadURL: http://svn.apache.org/repos/asf/hadoop/common/tags/release-1.0.4/src/contrib/hod/support/logcondense.py $'
 
 reMatch = reVersion.match(VERSION)
 if reMatch:
