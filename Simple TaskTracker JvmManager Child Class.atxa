@@ -1,0 +1,1623 @@
+<,weimingshi.gatech@gmail.com,weimingshi.gatech@gmail.com,weimingshi.gatech@gmail.com,weimingshi.gatech@gmail.com,weimingshi.gatech@gmail.com,weimingshi.gatech@gmail.com,weimingshi.gatech@gmail.com,weimingshi.gatech@gmail.com> <http://www.architexa.com/rdf/core#creator> "true" .
+
+@prefix atxa-rse-eclipse: <http://www.architexa.com/rdf/rse-eclipse#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atxa-jdt-wkspc: <http://www.architexa.com/rdf/jdt-wkspc#> .
+@prefix atxa-core: <http://www.architexa.com/rdf/core#> .
+@prefix atxa: <http://www.architexa.com/rdf/> .
+@prefix atxa-jdt: <http://www.architexa.com/rdf/jdt#> .
+
+<http://www.architexa.com/rdf/rse-eclipse#Simple TaskTracker JvmManager Child Class.atxa> a atxa-core:reloFile .
+
+atxa:DetailNode atxa-core:detailLevel "2" .
+
+atxa-core:docRoot atxa-core:browseModel "com.architexa.diagrams.relo.jdt/com.architexa.diagrams.relo.jdt.browse.ClassStrucBrowseModel" ;
+	atxa-core:contains _:node17cvbls4bx1 .
+
+_:node17cvbls4bx1 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred> ;
+	atxa-core:posX "-267" ;
+	atxa-core:posY "127" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JVMId> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Child> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmContext> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskController> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$DefaultTaskController> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmTask> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$ReduceTask> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$ReduceTaskRunner> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$MapTaskRunner> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobConf> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$MapTask> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Task> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskUmbilicalProtocol> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskRunner> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobTracker> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskInProgress> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobInProgress> .
+
+_:node17cvbls4bx1 atxa-core:contains _:node17cvbls4bx2 .
+
+_:node17cvbls4bx2 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JVMId> ;
+	atxa-core:posX "1270" ;
+	atxa-core:posY "669" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JVMId> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JVMId.JVMId(JobID,boolean,int,)> .
+
+_:node17cvbls4bx2 atxa-core:contains _:node17cvbls4bx3 .
+
+_:node17cvbls4bx3 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JVMId.JVMId(JobID,boolean,int,)> ;
+	atxa-core:posX "1271" ;
+	atxa-core:posY "687" .
+
+_:node17cvbls4bx1 atxa-core:contains _:node17cvbls4bx4 .
+
+_:node17cvbls4bx4 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Child> ;
+	atxa-core:posX "758" ;
+	atxa-core:posY "532" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Child> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Child.main(String[],)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Child$4> .
+
+_:node17cvbls4bx4 atxa-core:contains _:node17cvbls4bx5 .
+
+_:node17cvbls4bx5 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Child.main(String[],)> ;
+	atxa-core:posX "759" ;
+	atxa-core:posY "550" .
+
+_:node17cvbls4bx6 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx5 ;
+	rdf:object _:node17cvbls4bx3 .
+
+_:node17cvbls4bx7 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx5 ;
+	rdf:object _:node17cvbls4bx8 .
+
+_:node17cvbls4bx9 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx5 ;
+	rdf:object _:node17cvbls4bx10 .
+
+_:node17cvbls4bx11 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx5 ;
+	rdf:object _:node17cvbls4bx12 .
+
+_:node17cvbls4bx13 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx5 ;
+	rdf:object _:node17cvbls4bx14 .
+
+_:node17cvbls4bx15 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx5 ;
+	rdf:object _:node17cvbls4bx16 .
+
+_:node17cvbls4bx4 atxa-core:contains _:node17cvbls4bx17 .
+
+_:node17cvbls4bx17 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Child$4> ;
+	atxa-core:posX "759" ;
+	atxa-core:posY "566" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Child$4> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Child$4.run()> .
+
+_:node17cvbls4bx17 atxa-core:contains _:node17cvbls4bx18 .
+
+_:node17cvbls4bx18 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Child$4.run()> ;
+	atxa-core:posX "760" ;
+	atxa-core:posY "584" .
+
+_:node17cvbls4bx19 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx18 ;
+	rdf:object _:node17cvbls4bx20 .
+
+_:node17cvbls4bx1 atxa-core:contains _:node17cvbls4bx21 .
+
+_:node17cvbls4bx21 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmContext> ;
+	atxa-core:posX "976" ;
+	atxa-core:posY "631" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmContext> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmContext.JvmContext(JVMId,String,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmContext.jvmId> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmContext.pid> .
+
+_:node17cvbls4bx21 atxa-core:contains _:node17cvbls4bx8 .
+
+_:node17cvbls4bx8 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmContext.JvmContext(JVMId,String,)> ;
+	atxa-core:posX "977" ;
+	atxa-core:posY "681" .
+
+_:node17cvbls4bx21 atxa-core:contains _:node17cvbls4bx22 .
+
+_:node17cvbls4bx22 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmContext.jvmId> ;
+	atxa-core:posX "977" ;
+	atxa-core:posY "649" .
+
+_:node17cvbls4bx21 atxa-core:contains _:node17cvbls4bx23 .
+
+_:node17cvbls4bx23 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmContext.pid> ;
+	atxa-core:posX "977" ;
+	atxa-core:posY "665" .
+
+_:node17cvbls4bx1 atxa-core:contains _:node17cvbls4bx25 .
+
+_:node17cvbls4bx25 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskController> ;
+	atxa-core:posX "363" ;
+	atxa-core:posY "1382" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskController> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskController.launchTask(String,String,String,List,List,File,String,String,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskController.signalTask(String,int,Signal,)> .
+
+_:node17cvbls4bx25 atxa-core:contains _:node17cvbls4bx26 .
+
+_:node17cvbls4bx26 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskController.launchTask(String,String,String,List,List,File,String,String,)> ;
+	atxa-core:posX "364" ;
+	atxa-core:posY "1400" .
+
+_:node17cvbls4bx25 atxa-core:contains _:node17cvbls4bx27 .
+
+_:node17cvbls4bx27 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskController.signalTask(String,int,Signal,)> ;
+	atxa-core:posX "364" ;
+	atxa-core:posY "1416" .
+
+_:node17cvbls4bx1 atxa-core:contains _:node17cvbls4bx28 .
+
+_:node17cvbls4bx28 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$DefaultTaskController> ;
+	atxa-core:posX "195" ;
+	atxa-core:posY "1467" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$DefaultTaskController> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$DefaultTaskController.launchTask(String,String,String,List,List,File,String,String,)> .
+
+_:node17cvbls4bx29 a atxa-core:link ;
+	atxa-core:model atxa-jdt:inherits ;
+	rdf:subject _:node17cvbls4bx28 ;
+	rdf:object _:node17cvbls4bx25 ;
+	atxa-core:bendpoint _:node17ct3amqvx14707 .
+
+_:node17ct3amqvx14707 atxa-core:bpLocation "278,1453" ;
+	atxa-core:bpIndex "0" .
+
+_:node17cvbls4bx29 atxa-core:bendpoint _:node17ct3amqvx14708 .
+
+_:node17ct3amqvx14708 atxa-core:bpLocation "425,1453" ;
+	atxa-core:bpIndex "1" .
+
+_:node17cvbls4bx28 atxa-core:contains _:node17cvbls4bx32 .
+
+_:node17cvbls4bx32 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$DefaultTaskController.launchTask(String,String,String,List,List,File,String,String,)> ;
+	atxa-core:posX "196" ;
+	atxa-core:posY "1485" .
+
+_:node17cvbls4bx33 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx32 ;
+	rdf:object _:node17cvbls4bx34 .
+
+_:node17cvbls4bx1 atxa-core:contains _:node17cvbls4bx36 .
+
+_:node17cvbls4bx36 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmTask> ;
+	atxa-core:posX "1173" ;
+	atxa-core:posY "789" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmTask> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmTask.shouldDie()> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmTask.shouldDie> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmTask.JvmTask(Task,boolean,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmTask.getTask()> .
+
+_:node17cvbls4bx36 atxa-core:contains _:node17cvbls4bx12 .
+
+_:node17cvbls4bx12 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmTask.shouldDie()> ;
+	atxa-core:posX "1174" ;
+	atxa-core:posY "823" .
+
+_:node17cvbls4bx36 atxa-core:contains _:node17cvbls4bx37 .
+
+_:node17cvbls4bx37 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmTask.shouldDie> ;
+	atxa-core:posX "1174" ;
+	atxa-core:posY "807" .
+
+_:node17cvbls4bx36 atxa-core:contains _:node17cvbls4bx38 .
+
+_:node17cvbls4bx38 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmTask.JvmTask(Task,boolean,)> ;
+	atxa-core:posX "1174" ;
+	atxa-core:posY "839" .
+
+_:node17cvbls4bx36 atxa-core:contains _:node17cvbls4bx39 .
+
+_:node17cvbls4bx39 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmTask.getTask()> ;
+	atxa-core:posX "1174" ;
+	atxa-core:posY "855" .
+
+_:node17cvbls4bx1 atxa-core:contains _:node17cvbls4bx54 .
+
+_:node17cvbls4bx54 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager> ;
+	atxa-core:posX "409" ;
+	atxa-core:posY "152" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager.launchJvm(TaskRunner,JvmEnv,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager.killJvm(JVMId,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager.isJvmKnown(JVMId,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager.setPidToJvm(JVMId,String,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager.getTaskForJvm(JVMId,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager.reduceJvmManager> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager.mapJvmManager> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager.constructJvmEnv(List,Vector,File,File,long,File,JobConf,)> .
+
+_:node17cvbls4bx54 atxa-core:contains _:node17cvbls4bx55 .
+
+_:node17cvbls4bx55 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType> ;
+	atxa-core:posX "410" ;
+	atxa-core:posY "298" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.isMap> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.jvmIdToPid> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.jvmIdToRunner> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.jvmToRunningTask> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.maxJvms> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.runningTaskToJvm> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.tracker> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.reapJvm(TaskRunner,JvmEnv,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.spawnNewJvm(JobID,JvmEnv,TaskRunner,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType$JvmRunner> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.setRunningTaskForJvm(JVMId,TaskRunner,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.killJvmRunner(JvmManagerForType$JvmRunner,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.killJvm(JVMId,)> .
+
+_:node17cvbls4bx55 atxa-core:contains _:node17cvbls4bx56 .
+
+_:node17cvbls4bx56 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.isMap> ;
+	atxa-core:posX "411" ;
+	atxa-core:posY "316" .
+
+_:node17cvbls4bx55 atxa-core:contains _:node17cvbls4bx57 .
+
+_:node17cvbls4bx57 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.jvmIdToPid> ;
+	atxa-core:posX "411" ;
+	atxa-core:posY "332" .
+
+_:node17cvbls4bx55 atxa-core:contains _:node17cvbls4bx58 .
+
+_:node17cvbls4bx58 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.jvmIdToRunner> ;
+	atxa-core:posX "411" ;
+	atxa-core:posY "348" .
+
+_:node17cvbls4bx55 atxa-core:contains _:node17cvbls4bx59 .
+
+_:node17cvbls4bx59 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.jvmToRunningTask> ;
+	atxa-core:posX "411" ;
+	atxa-core:posY "364" .
+
+_:node17cvbls4bx55 atxa-core:contains _:node17cvbls4bx60 .
+
+_:node17cvbls4bx60 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.maxJvms> ;
+	atxa-core:posX "411" ;
+	atxa-core:posY "380" .
+
+_:node17cvbls4bx55 atxa-core:contains _:node17cvbls4bx61 .
+
+_:node17cvbls4bx61 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.runningTaskToJvm> ;
+	atxa-core:posX "411" ;
+	atxa-core:posY "396" .
+
+_:node17cvbls4bx55 atxa-core:contains _:node17cvbls4bx62 .
+
+_:node17cvbls4bx62 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.tracker> ;
+	atxa-core:posX "411" ;
+	atxa-core:posY "412" .
+
+_:node17cvbls4bx55 atxa-core:contains _:node17cvbls4bx63 .
+
+_:node17cvbls4bx63 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.reapJvm(TaskRunner,JvmEnv,)> ;
+	atxa-core:posX "411" ;
+	atxa-core:posY "428" .
+
+_:node17cvbls4bx64 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx63 ;
+	rdf:object _:node17cvbls4bx65 .
+
+_:node17cvbls4bx66 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx63 ;
+	rdf:object _:node17cvbls4bx67 .
+
+_:node17cvbls4bx68 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx63 ;
+	rdf:object _:node17cvbls4bx69 .
+
+_:node17cvbls4bx55 atxa-core:contains _:node17cvbls4bx65 .
+
+_:node17cvbls4bx65 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.spawnNewJvm(JobID,JvmEnv,TaskRunner,)> ;
+	atxa-core:posX "411" ;
+	atxa-core:posY "444" .
+
+_:node17cvbls4bx70 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx65 ;
+	rdf:object _:node17cvbls4bx71 .
+
+_:node17cvbls4bx72 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx65 ;
+	rdf:object _:node17cvbls4bx73 .
+
+_:node17cvbls4bx55 atxa-core:contains _:node17cvbls4bx74 .
+
+_:node17cvbls4bx74 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType$JvmRunner> ;
+	atxa-core:posX "411" ;
+	atxa-core:posY "508" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType$JvmRunner> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType$JvmRunner.run()> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType$JvmRunner.runChild(JvmEnv,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType$JvmRunner.setBusy(boolean,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType$JvmRunner.isBusy()> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType$JvmRunner.kill()> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType$JvmRunner.JvmRunner(JvmManagerForType,JvmEnv,JobID,Task,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType$JvmRunner.start()> .
+
+_:node17cvbls4bx74 atxa-core:contains _:node17cvbls4bx75 .
+
+_:node17cvbls4bx75 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType$JvmRunner.run()> ;
+	atxa-core:posX "412" ;
+	atxa-core:posY "526" .
+
+_:node17cvbls4bx76 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx75 ;
+	rdf:object _:node17cvbls4bx77 .
+
+_:node17cvbls4bx74 atxa-core:contains _:node17cvbls4bx77 .
+
+_:node17cvbls4bx77 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType$JvmRunner.runChild(JvmEnv,)> ;
+	atxa-core:posX "412" ;
+	atxa-core:posY "542" .
+
+_:node17cvbls4bx78 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx77 ;
+	rdf:object _:node17cvbls4bx26 .
+
+_:node17cvbls4bx74 atxa-core:contains _:node17cvbls4bx79 .
+
+_:node17cvbls4bx79 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType$JvmRunner.setBusy(boolean,)> ;
+	atxa-core:posX "412" ;
+	atxa-core:posY "558" .
+
+_:node17cvbls4bx74 atxa-core:contains _:node17cvbls4bx80 .
+
+_:node17cvbls4bx80 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType$JvmRunner.isBusy()> ;
+	atxa-core:posX "412" ;
+	atxa-core:posY "574" .
+
+_:node17cvbls4bx74 atxa-core:contains _:node17cvbls4bx81 .
+
+_:node17cvbls4bx81 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType$JvmRunner.kill()> ;
+	atxa-core:posX "412" ;
+	atxa-core:posY "590" .
+
+_:node17cvbls4bx82 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx81 ;
+	rdf:object _:node17cvbls4bx27 .
+
+_:node17cvbls4bx74 atxa-core:contains _:node17cvbls4bx71 .
+
+_:node17cvbls4bx71 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType$JvmRunner.JvmRunner(JvmManagerForType,JvmEnv,JobID,Task,)> ;
+	atxa-core:posX "412" ;
+	atxa-core:posY "606" .
+
+_:node17cvbls4bx74 atxa-core:contains _:node17cvbls4bx73 .
+
+_:node17cvbls4bx73 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType$JvmRunner.start()> ;
+	atxa-core:posX "412" ;
+	atxa-core:posY "622" .
+
+_:node17cvbls4bx55 atxa-core:contains _:node17cvbls4bx67 .
+
+_:node17cvbls4bx67 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.setRunningTaskForJvm(JVMId,TaskRunner,)> ;
+	atxa-core:posX "411" ;
+	atxa-core:posY "460" .
+
+_:node17cvbls4bx55 atxa-core:contains _:node17cvbls4bx69 .
+
+_:node17cvbls4bx69 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.killJvmRunner(JvmManagerForType$JvmRunner,)> ;
+	atxa-core:posX "411" ;
+	atxa-core:posY "476" .
+
+_:node17cvbls4bx83 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx69 ;
+	rdf:object _:node17cvbls4bx81 .
+
+_:node17cvbls4bx55 atxa-core:contains _:node17cvbls4bx84 .
+
+_:node17cvbls4bx84 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager$JvmManagerForType.killJvm(JVMId,)> ;
+	atxa-core:posX "411" ;
+	atxa-core:posY "492" .
+
+_:node17cvbls4bx85 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx84 ;
+	rdf:object _:node17cvbls4bx69 .
+
+_:node17cvbls4bx54 atxa-core:contains _:node17cvbls4bx47 .
+
+_:node17cvbls4bx47 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager.launchJvm(TaskRunner,JvmEnv,)> ;
+	atxa-core:posX "410" ;
+	atxa-core:posY "202" .
+
+_:node17cvbls4bx86 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx47 ;
+	rdf:object _:node17cvbls4bx63 .
+
+_:node17cvbls4bx54 atxa-core:contains _:node17cvbls4bx87 .
+
+_:node17cvbls4bx87 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager.killJvm(JVMId,)> ;
+	atxa-core:posX "410" ;
+	atxa-core:posY "218" .
+
+_:node17cvbls4bx88 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx87 ;
+	rdf:object _:node17cvbls4bx84 .
+
+_:node17cvbls4bx54 atxa-core:contains _:node17cvbls4bx89 .
+
+_:node17cvbls4bx89 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager.isJvmKnown(JVMId,)> ;
+	atxa-core:posX "410" ;
+	atxa-core:posY "234" .
+
+_:node17cvbls4bx54 atxa-core:contains _:node17cvbls4bx90 .
+
+_:node17cvbls4bx90 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager.setPidToJvm(JVMId,String,)> ;
+	atxa-core:posX "410" ;
+	atxa-core:posY "250" .
+
+_:node17cvbls4bx54 atxa-core:contains _:node17cvbls4bx91 .
+
+_:node17cvbls4bx91 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager.getTaskForJvm(JVMId,)> ;
+	atxa-core:posX "410" ;
+	atxa-core:posY "266" .
+
+_:node17cvbls4bx54 atxa-core:contains _:node17cvbls4bx92 .
+
+_:node17cvbls4bx92 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager.reduceJvmManager> ;
+	atxa-core:posX "410" ;
+	atxa-core:posY "170" .
+
+_:node17cvbls4bx54 atxa-core:contains _:node17cvbls4bx93 .
+
+_:node17cvbls4bx93 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager.mapJvmManager> ;
+	atxa-core:posX "410" ;
+	atxa-core:posY "186" .
+
+_:node17cvbls4bx54 atxa-core:contains _:node17cvbls4bx49 .
+
+_:node17cvbls4bx49 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JvmManager.constructJvmEnv(List,Vector,File,File,long,File,JobConf,)> ;
+	atxa-core:posX "410" ;
+	atxa-core:posY "282" .
+
+_:node17cvbls4bx1 atxa-core:contains _:node17cvbls4bx139 .
+
+_:node17cvbls4bx139 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$ReduceTask> ;
+	atxa-core:posX "671" ;
+	atxa-core:posY "1097" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$ReduceTask> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$ReduceTask.run(JobConf,TaskUmbilicalProtocol,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$ReduceTask.createRunner(TaskTracker,TaskInProgress,RunningJob,)> .
+
+_:node17cvbls4bx139 atxa-core:contains _:node17cvbls4bx145 .
+
+_:node17cvbls4bx145 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$ReduceTask.run(JobConf,TaskUmbilicalProtocol,)> ;
+	atxa-core:posX "672" ;
+	atxa-core:posY "1115" .
+
+_:node17cvbls4bx146 a atxa-core:link ;
+	atxa-core:model atxa-jdt:overrides ;
+	rdf:subject _:node17cvbls4bx145 ;
+	rdf:object _:node17cvbls4bx20 ;
+	atxa-core:bendpoint _:node17ct3amqvx14709 .
+
+_:node17ct3amqvx14709 atxa-core:bpLocation "736,1089" ;
+	atxa-core:bpIndex "0" .
+
+_:node17cvbls4bx146 atxa-core:bendpoint _:node17ct3amqvx14710 .
+
+_:node17ct3amqvx14710 atxa-core:bpLocation "998,1089" ;
+	atxa-core:bpIndex "1" .
+
+_:node17cvbls4bx139 atxa-core:contains _:node17cvbls4bx140 .
+
+_:node17cvbls4bx140 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$ReduceTask.createRunner(TaskTracker,TaskInProgress,RunningJob,)> ;
+	atxa-core:posX "672" ;
+	atxa-core:posY "1131" .
+
+_:node17cvbls4bx141 a atxa-core:link ;
+	atxa-core:model atxa-jdt:overrides ;
+	rdf:subject _:node17cvbls4bx140 ;
+	rdf:object _:node17cvbls4bx134 ;
+	atxa-core:bendpoint _:node17ct3amqvx14711 .
+
+_:node17ct3amqvx14711 atxa-core:bpLocation "736,1041" ;
+	atxa-core:bpIndex "0" .
+
+_:node17cvbls4bx141 atxa-core:bendpoint _:node17ct3amqvx14712 .
+
+_:node17ct3amqvx14712 atxa-core:bpLocation "998,1041" ;
+	atxa-core:bpIndex "1" .
+
+_:node17cvbls4bx144 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx140 ;
+	rdf:object _:node17cvbls4bx41 .
+
+_:node17cvbls4bx1 atxa-core:contains _:node17cvbls4bx40 .
+
+_:node17cvbls4bx40 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$ReduceTaskRunner> ;
+	atxa-core:posX "672" ;
+	atxa-core:posY "1379" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$ReduceTaskRunner> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$ReduceTaskRunner.ReduceTaskRunner(TaskInProgress,TaskTracker,JobConf,RunningJob,)> .
+
+_:node17cvbls4bx40 atxa-core:contains _:node17cvbls4bx41 .
+
+_:node17cvbls4bx41 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$ReduceTaskRunner.ReduceTaskRunner(TaskInProgress,TaskTracker,JobConf,RunningJob,)> ;
+	atxa-core:posX "673" ;
+	atxa-core:posY "1397" .
+
+_:node17cvbls4bx42 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx41 ;
+	rdf:object _:node17cvbls4bx43 .
+
+_:node17cvbls4bx1 atxa-core:contains _:node17ct3amqvx5414 .
+
+_:node17ct3amqvx5414 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$MapTaskRunner> ;
+	atxa-core:posX "867" ;
+	atxa-core:posY "1409" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$MapTaskRunner> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$MapTaskRunner.MapTaskRunner(TaskInProgress,TaskTracker,JobConf,RunningJob,)> .
+
+_:node17ct3amqvx5414 atxa-core:contains _:node17ct3amqvx5413 .
+
+_:node17ct3amqvx5413 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$MapTaskRunner.MapTaskRunner(TaskInProgress,TaskTracker,JobConf,RunningJob,)> ;
+	atxa-core:posX "868" ;
+	atxa-core:posY "1427" .
+
+_:node17ct3amqvx5226 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17ct3amqvx5413 ;
+	rdf:object _:node17cvbls4bx43 .
+
+_:node17cvbls4bx1 atxa-core:contains _:node17cvbls4bx35 .
+
+_:node17cvbls4bx35 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobConf> ;
+	atxa-core:posX "1164" ;
+	atxa-core:posY "946" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobConf> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobConf.getNumTasksToExecutePerJvm()> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobConf.getUseNewMapper()> .
+
+_:node17cvbls4bx35 atxa-core:contains _:node17cvbls4bx14 .
+
+_:node17cvbls4bx14 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobConf.getNumTasksToExecutePerJvm()> ;
+	atxa-core:posX "1165" ;
+	atxa-core:posY "964" .
+
+_:node17cvbls4bx35 atxa-core:contains _:node17ct3amqvx9777 .
+
+_:node17ct3amqvx9777 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobConf.getUseNewMapper()> ;
+	atxa-core:posX "1165" ;
+	atxa-core:posY "980" .
+
+_:node17cvbls4bx1 atxa-core:contains _:node17ct3amqvx5409 .
+
+_:node17ct3amqvx5409 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$MapTask> ;
+	atxa-core:posX "949" ;
+	atxa-core:posY "1320" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$MapTask> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$MapTask.createRunner(TaskTracker,TaskInProgress,RunningJob,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$MapTask.run(JobConf,TaskUmbilicalProtocol,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$MapTask.runNewMapper(JobConf,TaskSplitIndex,TaskUmbilicalProtocol,TaskReporter,)> .
+
+_:node17ct3amqvx5409 atxa-core:contains _:node17ct3amqvx5410 .
+
+_:node17ct3amqvx5410 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$MapTask.createRunner(TaskTracker,TaskInProgress,RunningJob,)> ;
+	atxa-core:posX "950" ;
+	atxa-core:posY "1338" .
+
+_:node17ct3amqvx4203 a atxa-core:link ;
+	atxa-core:model atxa-jdt:overrides ;
+	rdf:subject _:node17ct3amqvx5410 ;
+	rdf:object _:node17cvbls4bx134 ;
+	atxa-core:bendpoint _:node17ct3amqvx14713 .
+
+_:node17ct3amqvx14713 atxa-core:bpLocation "1019,1041" ;
+	atxa-core:bpIndex "0" .
+
+_:node17ct3amqvx4203 atxa-core:bendpoint _:node17ct3amqvx14714 .
+
+_:node17ct3amqvx14714 atxa-core:bpLocation "998,1041" ;
+	atxa-core:bpIndex "1" .
+
+_:node17ct3amqvx5155 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17ct3amqvx5410 ;
+	rdf:object _:node17ct3amqvx5413 .
+
+_:node17ct3amqvx5409 atxa-core:contains _:node17ct3amqvx9780 .
+
+_:node17ct3amqvx9780 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$MapTask.run(JobConf,TaskUmbilicalProtocol,)> ;
+	atxa-core:posX "950" ;
+	atxa-core:posY "1354" .
+
+_:node17ct3amqvx8334 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17ct3amqvx9780 ;
+	rdf:object _:node17ct3amqvx9777 .
+
+_:node17ct3amqvx8375 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17ct3amqvx9780 ;
+	rdf:object _:node17ct3amqvx9781 .
+
+_:node17ct3amqvx8727 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17ct3amqvx9780 ;
+	rdf:object _:node17ct3amqvx9782 .
+
+_:node17ct3amqvx5409 atxa-core:contains _:node17ct3amqvx9781 .
+
+_:node17ct3amqvx9781 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$MapTask.runNewMapper(JobConf,TaskSplitIndex,TaskUmbilicalProtocol,TaskReporter,)> ;
+	atxa-core:posX "950" ;
+	atxa-core:posY "1370" .
+
+_:node17ct3amqvx8566 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17ct3amqvx9781 ;
+	rdf:object _:node17cvbls4bx154 .
+
+_:node17cvbls4bx1 atxa-core:contains _:node17cvbls4bx149 .
+
+_:node17cvbls4bx149 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Task> ;
+	atxa-core:posX "916" ;
+	atxa-core:posY "960" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Task> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Task.createRunner(TaskTracker,TaskInProgress,RunningJob,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Task.getTaskID()> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Task.setJvmContext(JvmContext,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Task.run(JobConf,TaskUmbilicalProtocol,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Task.isMapTask()> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Task.conf> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Task.taskId> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Task.done(TaskUmbilicalProtocol,TaskReporter,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Task.sendDone(TaskUmbilicalProtocol,)> .
+
+_:node17cvbls4bx149 atxa-core:contains _:node17cvbls4bx134 .
+
+_:node17cvbls4bx134 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Task.createRunner(TaskTracker,TaskInProgress,RunningJob,)> ;
+	atxa-core:posX "917" ;
+	atxa-core:posY "1010" .
+
+_:node17cvbls4bx149 atxa-core:contains _:node17cvbls4bx150 .
+
+_:node17cvbls4bx150 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Task.getTaskID()> ;
+	atxa-core:posX "917" ;
+	atxa-core:posY "1026" .
+
+_:node17cvbls4bx149 atxa-core:contains _:node17cvbls4bx16 .
+
+_:node17cvbls4bx16 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Task.setJvmContext(JvmContext,)> ;
+	atxa-core:posX "917" ;
+	atxa-core:posY "1042" .
+
+_:node17cvbls4bx149 atxa-core:contains _:node17cvbls4bx20 .
+
+_:node17cvbls4bx20 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Task.run(JobConf,TaskUmbilicalProtocol,)> ;
+	atxa-core:posX "917" ;
+	atxa-core:posY "1058" .
+
+_:node17cvbls4bx149 atxa-core:contains _:node17cvbls4bx151 .
+
+_:node17cvbls4bx151 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Task.isMapTask()> ;
+	atxa-core:posX "917" ;
+	atxa-core:posY "1074" .
+
+_:node17cvbls4bx149 atxa-core:contains _:node17ct3amqvx7187 .
+
+_:node17ct3amqvx7187 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Task.conf> ;
+	atxa-core:posX "917" ;
+	atxa-core:posY "978" .
+
+_:node17cvbls4bx149 atxa-core:contains _:node17ct3amqvx7188 .
+
+_:node17ct3amqvx7188 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Task.taskId> ;
+	atxa-core:posX "917" ;
+	atxa-core:posY "994" .
+
+_:node17cvbls4bx149 atxa-core:contains _:node17ct3amqvx9782 .
+
+_:node17ct3amqvx9782 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Task.done(TaskUmbilicalProtocol,TaskReporter,)> ;
+	atxa-core:posX "917" ;
+	atxa-core:posY "1090" .
+
+_:node17ct3amqvx8818 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17ct3amqvx9782 ;
+	rdf:object _:node17ct3amqvx9783 .
+
+_:node17cvbls4bx149 atxa-core:contains _:node17ct3amqvx9783 .
+
+_:node17ct3amqvx9783 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$Task.sendDone(TaskUmbilicalProtocol,)> ;
+	atxa-core:posX "917" ;
+	atxa-core:posY "1106" .
+
+_:node17ct3amqvx8859 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17ct3amqvx9783 ;
+	rdf:object _:node17ct3amqvx9784 .
+
+_:node17cvbls4bx1 atxa-core:contains _:node17cvbls4bx24 .
+
+_:node17cvbls4bx24 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskUmbilicalProtocol> ;
+	atxa-core:posX "679" ;
+	atxa-core:posY "785" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskUmbilicalProtocol> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskUmbilicalProtocol.getTask(JvmContext,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskUmbilicalProtocol.done(TaskAttemptID,JvmContext,)> .
+
+_:node17cvbls4bx24 atxa-core:contains _:node17cvbls4bx10 .
+
+_:node17cvbls4bx10 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskUmbilicalProtocol.getTask(JvmContext,)> ;
+	atxa-core:posX "680" ;
+	atxa-core:posY "803" .
+
+_:node17cvbls4bx24 atxa-core:contains _:node17ct3amqvx9784 .
+
+_:node17ct3amqvx9784 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskUmbilicalProtocol.done(TaskAttemptID,JvmContext,)> ;
+	atxa-core:posX "680" ;
+	atxa-core:posY "819" .
+
+_:node17cvbls4bx1 atxa-core:contains _:node17cvbls4bx94 .
+
+_:node17cvbls4bx94 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker> ;
+	atxa-core:posX "-122" ;
+	atxa-core:posY "181" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.getTask(JvmContext,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.runningJobs> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.jvmManager> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.main(String[],)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.run()> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.offerService()> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.addToTaskQueue(LaunchTaskAction,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.registerTask(LaunchTaskAction,TaskLauncher,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.runningTasks> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.mapLauncher> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.TaskTracker(JobConf,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.initialize()> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskLauncher> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.startNewTask(TaskInProgress,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.launchTaskForJob(TaskInProgress,JobConf,RunningJob,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskInProgress> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$5> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$RunningJob> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.localizeJob(TaskInProgress,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.addTaskToJob(JobID,TaskInProgress,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.done(TaskAttemptID,JvmContext,)> .
+
+_:node17cvbls4bx94 atxa-core:contains _:node17cvbls4bx95 .
+
+_:node17cvbls4bx95 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.getTask(JvmContext,)> ;
+	atxa-core:posX "-121" ;
+	atxa-core:posY "263" .
+
+_:node17cvbls4bx96 a atxa-core:link ;
+	atxa-core:model atxa-jdt:overrides ;
+	rdf:subject _:node17cvbls4bx95 ;
+	rdf:object _:node17cvbls4bx10 ;
+	atxa-core:bendpoint _:node17ct3amqvx14715 .
+
+_:node17ct3amqvx14715 atxa-core:bpLocation "25,834" ;
+	atxa-core:bpIndex "0" .
+
+_:node17cvbls4bx96 atxa-core:bendpoint _:node17ct3amqvx14716 .
+
+_:node17ct3amqvx14716 atxa-core:bpLocation "759,834" ;
+	atxa-core:bpIndex "1" .
+
+_:node17cvbls4bx99 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx95 ;
+	rdf:object _:node17cvbls4bx38 .
+
+_:node17cvbls4bx100 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx95 ;
+	rdf:object _:node17cvbls4bx89 .
+
+_:node17cvbls4bx101 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx95 ;
+	rdf:object _:node17cvbls4bx90 .
+
+_:node17cvbls4bx102 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx95 ;
+	rdf:object _:node17cvbls4bx87 .
+
+_:node17cvbls4bx103 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx95 ;
+	rdf:object _:node17cvbls4bx91 .
+
+_:node17cvbls4bx94 atxa-core:contains _:node17cvbls4bx104 .
+
+_:node17cvbls4bx104 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.runningJobs> ;
+	atxa-core:posX "-121" ;
+	atxa-core:posY "199" .
+
+_:node17cvbls4bx94 atxa-core:contains _:node17cvbls4bx105 .
+
+_:node17cvbls4bx105 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.jvmManager> ;
+	atxa-core:posX "-121" ;
+	atxa-core:posY "215" .
+
+_:node17cvbls4bx94 atxa-core:contains _:node17cvbls4bx106 .
+
+_:node17cvbls4bx106 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.main(String[],)> ;
+	atxa-core:posX "-121" ;
+	atxa-core:posY "279" .
+
+_:node17cvbls4bx107 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx106 ;
+	rdf:object _:node17cvbls4bx108 .
+
+_:node17cvbls4bx109 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx106 ;
+	rdf:object _:node17cvbls4bx110 .
+
+_:node17cvbls4bx94 atxa-core:contains _:node17cvbls4bx108 .
+
+_:node17cvbls4bx108 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.run()> ;
+	atxa-core:posX "-121" ;
+	atxa-core:posY "295" .
+
+_:node17cvbls4bx111 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx108 ;
+	rdf:object _:node17cvbls4bx112 .
+
+_:node17cvbls4bx94 atxa-core:contains _:node17cvbls4bx112 .
+
+_:node17cvbls4bx112 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.offerService()> ;
+	atxa-core:posX "-121" ;
+	atxa-core:posY "311" .
+
+_:node17cvbls4bx113 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx112 ;
+	rdf:object _:node17cvbls4bx114 .
+
+_:node17cvbls4bx94 atxa-core:contains _:node17cvbls4bx114 .
+
+_:node17cvbls4bx114 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.addToTaskQueue(LaunchTaskAction,)> ;
+	atxa-core:posX "-121" ;
+	atxa-core:posY "327" .
+
+_:node17cvbls4bx115 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx114 ;
+	rdf:object _:node17cvbls4bx116 .
+
+_:node17cvbls4bx94 atxa-core:contains _:node17cvbls4bx117 .
+
+_:node17cvbls4bx117 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.registerTask(LaunchTaskAction,TaskLauncher,)> ;
+	atxa-core:posX "-121" ;
+	atxa-core:posY "343" .
+
+_:node17cvbls4bx94 atxa-core:contains _:node17cvbls4bx118 .
+
+_:node17cvbls4bx118 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.runningTasks> ;
+	atxa-core:posX "-121" ;
+	atxa-core:posY "231" .
+
+_:node17cvbls4bx94 atxa-core:contains _:node17cvbls4bx119 .
+
+_:node17cvbls4bx119 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.mapLauncher> ;
+	atxa-core:posX "-121" ;
+	atxa-core:posY "247" .
+
+_:node17cvbls4bx94 atxa-core:contains _:node17cvbls4bx110 .
+
+_:node17cvbls4bx110 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.TaskTracker(JobConf,)> ;
+	atxa-core:posX "-121" ;
+	atxa-core:posY "359" .
+
+_:node17cvbls4bx120 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx110 ;
+	rdf:object _:node17cvbls4bx121 .
+
+_:node17cvbls4bx94 atxa-core:contains _:node17cvbls4bx121 .
+
+_:node17cvbls4bx121 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.initialize()> ;
+	atxa-core:posX "-121" ;
+	atxa-core:posY "375" .
+
+_:node17cvbls4bx122 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx121 ;
+	rdf:object _:node17cvbls4bx123 .
+
+_:node17cvbls4bx94 atxa-core:contains _:node17cvbls4bx124 .
+
+_:node17cvbls4bx124 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskLauncher> ;
+	atxa-core:posX "-121" ;
+	atxa-core:posY "471" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskLauncher> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskLauncher.addToTaskQueue(LaunchTaskAction,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskLauncher.TaskLauncher(TaskTracker,TaskType,int,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskLauncher.run()> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskLauncher.maxSlots> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskLauncher.tasksToLaunch> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskLauncher.numFreeSlots> .
+
+_:node17cvbls4bx124 atxa-core:contains _:node17cvbls4bx116 .
+
+_:node17cvbls4bx116 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskLauncher.addToTaskQueue(LaunchTaskAction,)> ;
+	atxa-core:posX "-120" ;
+	atxa-core:posY "537" .
+
+_:node17cvbls4bx125 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx116 ;
+	rdf:object _:node17cvbls4bx117 .
+
+_:node17cvbls4bx124 atxa-core:contains _:node17cvbls4bx123 .
+
+_:node17cvbls4bx123 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskLauncher.TaskLauncher(TaskTracker,TaskType,int,)> ;
+	atxa-core:posX "-120" ;
+	atxa-core:posY "553" .
+
+_:node17cvbls4bx124 atxa-core:contains _:node17cvbls4bx126 .
+
+_:node17cvbls4bx126 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskLauncher.run()> ;
+	atxa-core:posX "-120" ;
+	atxa-core:posY "569" .
+
+_:node17cvbls4bx127 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx126 ;
+	rdf:object _:node17cvbls4bx128 .
+
+_:node17cvbls4bx124 atxa-core:contains _:node17ct3amqvx11826 .
+
+_:node17ct3amqvx11826 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskLauncher.maxSlots> ;
+	atxa-core:posX "-120" ;
+	atxa-core:posY "489" .
+
+_:node17cvbls4bx124 atxa-core:contains _:node17ct3amqvx11827 .
+
+_:node17ct3amqvx11827 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskLauncher.tasksToLaunch> ;
+	atxa-core:posX "-120" ;
+	atxa-core:posY "505" .
+
+_:node17cvbls4bx124 atxa-core:contains _:node17ct3amqvx11828 .
+
+_:node17ct3amqvx11828 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskLauncher.numFreeSlots> ;
+	atxa-core:posX "-120" ;
+	atxa-core:posY "521" .
+
+_:node17cvbls4bx94 atxa-core:contains _:node17cvbls4bx128 .
+
+_:node17cvbls4bx128 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.startNewTask(TaskInProgress,)> ;
+	atxa-core:posX "-121" ;
+	atxa-core:posY "391" .
+
+_:node17ct3amqvx3497 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx128 ;
+	rdf:object _:node17ct3amqvx3932 .
+
+_:node17cvbls4bx94 atxa-core:contains _:node17cvbls4bx129 .
+
+_:node17cvbls4bx129 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.launchTaskForJob(TaskInProgress,JobConf,RunningJob,)> ;
+	atxa-core:posX "-121" ;
+	atxa-core:posY "407" .
+
+_:node17cvbls4bx130 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx129 ;
+	rdf:object _:node17cvbls4bx131 .
+
+_:node17cvbls4bx94 atxa-core:contains _:node17cvbls4bx132 .
+
+_:node17cvbls4bx132 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskInProgress> ;
+	atxa-core:posX "-121" ;
+	atxa-core:posY "591" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskInProgress> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskInProgress.launchTask(RunningJob,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskInProgress.runner> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskInProgress.setTaskRunner(TaskRunner,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskInProgress.done> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskInProgress.task> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskInProgress.localJobConf> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskInProgress.reportDone()> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskInProgress.kill(boolean,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskInProgress.slotTaken> .
+
+_:node17cvbls4bx132 atxa-core:contains _:node17cvbls4bx131 .
+
+_:node17cvbls4bx131 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskInProgress.launchTask(RunningJob,)> ;
+	atxa-core:posX "-120" ;
+	atxa-core:posY "689" .
+
+_:node17cvbls4bx133 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx131 ;
+	rdf:object _:node17cvbls4bx134 .
+
+_:node17cvbls4bx135 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx131 ;
+	rdf:object _:node17cvbls4bx136 .
+
+_:node17ct3amqvx3795 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx131 ;
+	rdf:object _:node17ct3amqvx3933 .
+
+_:node17cvbls4bx132 atxa-core:contains _:node17cvbls4bx138 .
+
+_:node17cvbls4bx138 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskInProgress.runner> ;
+	atxa-core:posX "-120" ;
+	atxa-core:posY "609" .
+
+_:node17cvbls4bx132 atxa-core:contains _:node17cvbls4bx136 .
+
+_:node17cvbls4bx136 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskInProgress.setTaskRunner(TaskRunner,)> ;
+	atxa-core:posX "-120" ;
+	atxa-core:posY "705" .
+
+_:node17cvbls4bx132 atxa-core:contains _:node17ct3amqvx7180 .
+
+_:node17ct3amqvx7180 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskInProgress.done> ;
+	atxa-core:posX "-120" ;
+	atxa-core:posY "625" .
+
+_:node17cvbls4bx132 atxa-core:contains _:node17ct3amqvx7181 .
+
+_:node17ct3amqvx7181 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskInProgress.task> ;
+	atxa-core:posX "-120" ;
+	atxa-core:posY "641" .
+
+_:node17cvbls4bx132 atxa-core:contains _:node17ct3amqvx7182 .
+
+_:node17ct3amqvx7182 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskInProgress.localJobConf> ;
+	atxa-core:posX "-120" ;
+	atxa-core:posY "657" .
+
+_:node17cvbls4bx132 atxa-core:contains _:node17ct3amqvx9787 .
+
+_:node17ct3amqvx9787 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskInProgress.reportDone()> ;
+	atxa-core:posX "-120" ;
+	atxa-core:posY "721" .
+
+_:node17ct3amqvx7801 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17ct3amqvx9787 ;
+	rdf:object _:node17ct3amqvx9776 .
+
+_:node17cvbls4bx132 atxa-core:contains _:node17ct3amqvx9788 .
+
+_:node17ct3amqvx9788 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskInProgress.kill(boolean,)> ;
+	atxa-core:posX "-120" ;
+	atxa-core:posY "737" .
+
+_:node17ct3amqvx7882 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17ct3amqvx9788 ;
+	rdf:object _:node17ct3amqvx9775 .
+
+_:node17cvbls4bx132 atxa-core:contains _:node17ct3amqvx12009 .
+
+_:node17ct3amqvx12009 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$TaskInProgress.slotTaken> ;
+	atxa-core:posX "-120" ;
+	atxa-core:posY "673" .
+
+_:node17cvbls4bx94 atxa-core:contains _:node17ct3amqvx3934 .
+
+_:node17ct3amqvx3934 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$5> ;
+	atxa-core:posX "-121" ;
+	atxa-core:posY "759" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$5> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$5.5(TaskTracker,TaskInProgress,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$5.run()> .
+
+_:node17ct3amqvx3934 atxa-core:contains _:node17ct3amqvx3932 .
+
+_:node17ct3amqvx3932 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$5.5(TaskTracker,TaskInProgress,)> ;
+	atxa-core:posX "-120" ;
+	atxa-core:posY "777" .
+
+_:node17ct3amqvx3934 atxa-core:contains _:node17ct3amqvx3935 .
+
+_:node17ct3amqvx3935 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$5.run()> ;
+	atxa-core:posX "-120" ;
+	atxa-core:posY "793" .
+
+_:node17ct3amqvx3594 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17ct3amqvx3935 ;
+	rdf:object _:node17cvbls4bx129 .
+
+_:node17ct3amqvx6057 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17ct3amqvx3935 ;
+	rdf:object _:node17ct3amqvx7183 .
+
+_:node17ct3amqvx6138 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17ct3amqvx3935 ;
+	rdf:object _:node17ct3amqvx7184 .
+
+_:node17cvbls4bx94 atxa-core:contains _:node17ct3amqvx5992 .
+
+_:node17ct3amqvx5992 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$RunningJob> ;
+	atxa-core:posX "-121" ;
+	atxa-core:posY "815" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$RunningJob> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$RunningJob.jobConf> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$RunningJob.jobid> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$RunningJob.tasks> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$RunningJob.distCacheMgr> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$RunningJob.getJobConf()> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$RunningJob.RunningJob(JobID,)> .
+
+_:node17ct3amqvx5992 atxa-core:contains _:node17ct3amqvx5993 .
+
+_:node17ct3amqvx5993 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$RunningJob.jobConf> ;
+	atxa-core:posX "-120" ;
+	atxa-core:posY "833" .
+
+_:node17ct3amqvx5992 atxa-core:contains _:node17ct3amqvx5994 .
+
+_:node17ct3amqvx5994 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$RunningJob.jobid> ;
+	atxa-core:posX "-120" ;
+	atxa-core:posY "849" .
+
+_:node17ct3amqvx5992 atxa-core:contains _:node17ct3amqvx5995 .
+
+_:node17ct3amqvx5995 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$RunningJob.tasks> ;
+	atxa-core:posX "-120" ;
+	atxa-core:posY "865" .
+
+_:node17ct3amqvx5992 atxa-core:contains _:node17ct3amqvx5996 .
+
+_:node17ct3amqvx5996 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$RunningJob.distCacheMgr> ;
+	atxa-core:posX "-120" ;
+	atxa-core:posY "881" .
+
+_:node17ct3amqvx5992 atxa-core:contains _:node17ct3amqvx7183 .
+
+_:node17ct3amqvx7183 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$RunningJob.getJobConf()> ;
+	atxa-core:posX "-120" ;
+	atxa-core:posY "897" .
+
+_:node17ct3amqvx5992 atxa-core:contains _:node17ct3amqvx7185 .
+
+_:node17ct3amqvx7185 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker$RunningJob.RunningJob(JobID,)> ;
+	atxa-core:posX "-120" ;
+	atxa-core:posY "913" .
+
+_:node17cvbls4bx94 atxa-core:contains _:node17ct3amqvx7184 .
+
+_:node17ct3amqvx7184 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.localizeJob(TaskInProgress,)> ;
+	atxa-core:posX "-121" ;
+	atxa-core:posY "423" .
+
+_:node17cvbls4bx94 atxa-core:contains _:node17ct3amqvx7186 .
+
+_:node17ct3amqvx7186 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.addTaskToJob(JobID,TaskInProgress,)> ;
+	atxa-core:posX "-121" ;
+	atxa-core:posY "439" .
+
+_:node17ct3amqvx6359 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17ct3amqvx7186 ;
+	rdf:object _:node17ct3amqvx7185 .
+
+_:node17cvbls4bx94 atxa-core:contains _:node17ct3amqvx9789 .
+
+_:node17ct3amqvx9789 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskTracker.done(TaskAttemptID,JvmContext,)> ;
+	atxa-core:posX "-121" ;
+	atxa-core:posY "455" .
+
+_:node17ct3amqvx8083 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17ct3amqvx9789 ;
+	rdf:object _:node17ct3amqvx9787 .
+
+_:node17ct3amqvx11387 a atxa-core:link ;
+	atxa-core:model atxa-jdt:overrides ;
+	rdf:subject _:node17ct3amqvx9789 ;
+	rdf:object _:node17ct3amqvx9784 ;
+	atxa-core:bendpoint _:node17ct3amqvx14717 .
+
+_:node17ct3amqvx14717 atxa-core:bpLocation "25,850" ;
+	atxa-core:bpIndex "0" .
+
+_:node17ct3amqvx11387 atxa-core:bendpoint _:node17ct3amqvx14718 .
+
+_:node17ct3amqvx14718 atxa-core:bpLocation "759,850" ;
+	atxa-core:bpIndex "1" .
+
+_:node17cvbls4bx1 atxa-core:contains _:node17cvbls4bx44 .
+
+_:node17cvbls4bx44 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskRunner> ;
+	atxa-core:posX "162" ;
+	atxa-core:posY "1021" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskRunner> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskRunner.launchJvmAndWait(List,Vector,File,File,long,File,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskRunner.run()> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskRunner.tip> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskRunner.TaskRunner(TaskInProgress,TaskTracker,JobConf,RunningJob,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskRunner.start()> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskRunner.conf> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskRunner.done> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskRunner.jvmManager> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskRunner.kill()> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskRunner.signalDone()> .
+
+_:node17cvbls4bx44 atxa-core:contains _:node17cvbls4bx45 .
+
+_:node17cvbls4bx45 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskRunner.launchJvmAndWait(List,Vector,File,File,long,File,)> ;
+	atxa-core:posX "163" ;
+	atxa-core:posY "1103" .
+
+_:node17cvbls4bx46 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx45 ;
+	rdf:object _:node17cvbls4bx47 .
+
+_:node17cvbls4bx48 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx45 ;
+	rdf:object _:node17cvbls4bx49 .
+
+_:node17cvbls4bx44 atxa-core:contains _:node17cvbls4bx51 .
+
+_:node17cvbls4bx51 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskRunner.run()> ;
+	atxa-core:posX "163" ;
+	atxa-core:posY "1119" .
+
+_:node17cvbls4bx52 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx51 ;
+	rdf:object _:node17cvbls4bx45 .
+
+_:node17cvbls4bx44 atxa-core:contains _:node17cvbls4bx53 .
+
+_:node17cvbls4bx53 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskRunner.tip> ;
+	atxa-core:posX "163" ;
+	atxa-core:posY "1039" .
+
+_:node17cvbls4bx44 atxa-core:contains _:node17cvbls4bx43 .
+
+_:node17cvbls4bx43 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskRunner.TaskRunner(TaskInProgress,TaskTracker,JobConf,RunningJob,)> ;
+	atxa-core:posX "163" ;
+	atxa-core:posY "1135" .
+
+_:node17cvbls4bx44 atxa-core:contains _:node17ct3amqvx3933 .
+
+_:node17ct3amqvx3933 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskRunner.start()> ;
+	atxa-core:posX "163" ;
+	atxa-core:posY "1151" .
+
+_:node17cvbls4bx44 atxa-core:contains _:node17ct3amqvx5989 .
+
+_:node17ct3amqvx5989 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskRunner.conf> ;
+	atxa-core:posX "163" ;
+	atxa-core:posY "1055" .
+
+_:node17cvbls4bx44 atxa-core:contains _:node17ct3amqvx7639 .
+
+_:node17ct3amqvx7639 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskRunner.done> ;
+	atxa-core:posX "163" ;
+	atxa-core:posY "1071" .
+
+_:node17cvbls4bx44 atxa-core:contains _:node17ct3amqvx9774 .
+
+_:node17ct3amqvx9774 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskRunner.jvmManager> ;
+	atxa-core:posX "163" ;
+	atxa-core:posY "1087" .
+
+_:node17cvbls4bx44 atxa-core:contains _:node17ct3amqvx9775 .
+
+_:node17ct3amqvx9775 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskRunner.kill()> ;
+	atxa-core:posX "163" ;
+	atxa-core:posY "1167" .
+
+_:node17ct3amqvx7760 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17ct3amqvx9775 ;
+	rdf:object _:node17ct3amqvx9776 .
+
+_:node17cvbls4bx44 atxa-core:contains _:node17ct3amqvx9776 .
+
+_:node17ct3amqvx9776 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskRunner.signalDone()> ;
+	atxa-core:posX "163" ;
+	atxa-core:posY "1183" .
+
+_:node17cvbls4bx1 atxa-core:contains _:node17ct3amqvx14175 .
+
+_:node17ct3amqvx14175 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobTracker> ;
+	atxa-core:posX "-261" ;
+	atxa-core:posY "1172" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobTracker> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobTracker.initJob(JobInProgress,)> .
+
+_:node17ct3amqvx14175 atxa-core:contains _:node17ct3amqvx14176 .
+
+_:node17ct3amqvx14176 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobTracker.initJob(JobInProgress,)> ;
+	atxa-core:posX "-260" ;
+	atxa-core:posY "1190" .
+
+_:node17ct3amqvx13718 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17ct3amqvx14176 ;
+	rdf:object _:node17ct3amqvx14174 .
+
+_:node17cvbls4bx1 atxa-core:contains _:node17ct3amqvx12567 .
+
+_:node17ct3amqvx12567 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskInProgress> ;
+	atxa-core:posX "-60" ;
+	atxa-core:posY "1309" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskInProgress> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskInProgress.numSlotsRequired> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskInProgress.TaskInProgress(JobID,String,TaskSplitMetaInfo,JobTracker,JobConf,JobInProgress,int,int,)> .
+
+_:node17ct3amqvx12567 atxa-core:contains _:node17ct3amqvx12568 .
+
+_:node17ct3amqvx12568 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskInProgress.numSlotsRequired> ;
+	atxa-core:posX "-59" ;
+	atxa-core:posY "1327" .
+
+_:node17ct3amqvx12567 atxa-core:contains _:node17ct3amqvx14170 .
+
+_:node17ct3amqvx14170 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$TaskInProgress.TaskInProgress(JobID,String,TaskSplitMetaInfo,JobTracker,JobConf,JobInProgress,int,int,)> ;
+	atxa-core:posX "-59" ;
+	atxa-core:posY "1343" .
+
+_:node17cvbls4bx1 atxa-core:contains _:node17ct3amqvx14171 .
+
+_:node17ct3amqvx14171 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobInProgress> ;
+	atxa-core:posX "-106" ;
+	atxa-core:posY "1135" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobInProgress> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobInProgress.numSlotsPerMap> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobInProgress.numSlotsPerReduce> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobInProgress.initTasks()> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobInProgress.createSplits(JobID,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobInProgress.jobtracker> .
+
+_:node17ct3amqvx14171 atxa-core:contains _:node17ct3amqvx14172 .
+
+_:node17ct3amqvx14172 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobInProgress.numSlotsPerMap> ;
+	atxa-core:posX "-105" ;
+	atxa-core:posY "1153" .
+
+_:node17ct3amqvx14171 atxa-core:contains _:node17ct3amqvx14173 .
+
+_:node17ct3amqvx14173 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobInProgress.numSlotsPerReduce> ;
+	atxa-core:posX "-105" ;
+	atxa-core:posY "1169" .
+
+_:node17ct3amqvx14171 atxa-core:contains _:node17ct3amqvx14174 .
+
+_:node17ct3amqvx14174 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobInProgress.initTasks()> ;
+	atxa-core:posX "-105" ;
+	atxa-core:posY "1201" .
+
+_:node17ct3amqvx13352 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17ct3amqvx14174 ;
+	rdf:object _:node17ct3amqvx14170 .
+
+_:node17ct3amqvx14261 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17ct3amqvx14174 ;
+	rdf:object _:node17ct3amqvx14394 .
+
+_:node17ct3amqvx14171 atxa-core:contains _:node17ct3amqvx14394 .
+
+_:node17ct3amqvx14394 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobInProgress.createSplits(JobID,)> ;
+	atxa-core:posX "-105" ;
+	atxa-core:posY "1217" .
+
+_:node17ct3amqvx14171 atxa-core:contains _:node17ct3amqvx14719 .
+
+_:node17ct3amqvx14719 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapred$JobInProgress.jobtracker> ;
+	atxa-core:posX "-105" ;
+	atxa-core:posY "1185" .
+
+atxa-core:docRoot atxa-core:contains _:node17cvbls4bx152 .
+
+_:node17cvbls4bx152 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapreduce> ;
+	atxa-core:posX "1084" ;
+	atxa-core:posY "1438" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapreduce> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapreduce$JobContext> .
+
+_:node17cvbls4bx152 atxa-core:contains _:node17cvbls4bx153 .
+
+_:node17cvbls4bx153 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapreduce$JobContext> ;
+	atxa-core:posX "1090" ;
+	atxa-core:posY "1463" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapreduce$JobContext> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapreduce$JobContext.getMapperClass()> .
+
+_:node17cvbls4bx153 atxa-core:contains _:node17cvbls4bx154 .
+
+_:node17cvbls4bx154 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.mapreduce$JobContext.getMapperClass()> ;
+	atxa-core:posX "1091" ;
+	atxa-core:posY "1481" .
+
+_:node17cvbls4bx155 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx154 ;
+	rdf:object _:node17cvbls4bx156 .
+
+atxa-core:docRoot atxa-core:contains _:node17cvbls4bx157 .
+
+_:node17cvbls4bx157 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.conf> ;
+	atxa-core:posX "1166" ;
+	atxa-core:posY "1248" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.conf> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.conf$Configuration> .
+
+_:node17cvbls4bx157 atxa-core:contains _:node17cvbls4bx158 .
+
+_:node17cvbls4bx158 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.conf$Configuration> ;
+	atxa-core:posX "1172" ;
+	atxa-core:posY "1273" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.conf$Configuration> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.conf$Configuration.getClass(String,Class,)> , <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.conf$Configuration.getClassByName(String,)> .
+
+_:node17cvbls4bx158 atxa-core:contains _:node17cvbls4bx156 .
+
+_:node17cvbls4bx156 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.conf$Configuration.getClass(String,Class,)> ;
+	atxa-core:posX "1173" ;
+	atxa-core:posY "1291" .
+
+_:node17cvbls4bx159 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx156 ;
+	rdf:object _:node17cvbls4bx160 .
+
+_:node17cvbls4bx158 atxa-core:contains _:node17cvbls4bx160 .
+
+_:node17cvbls4bx160 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.conf$Configuration.getClassByName(String,)> ;
+	atxa-core:posX "1173" ;
+	atxa-core:posY "1307" .
+
+_:node17cvbls4bx161 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node17cvbls4bx160 ;
+	rdf:object _:node17cvbls4bx162 .
+
+atxa-core:docRoot atxa-core:contains _:node17cvbls4bx163 .
+
+_:node17cvbls4bx163 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.util> ;
+	atxa-core:posX "511" ;
+	atxa-core:posY "1420" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.util> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.util$Shell> .
+
+_:node17cvbls4bx163 atxa-core:contains _:node17cvbls4bx164 .
+
+_:node17cvbls4bx164 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.util$Shell> ;
+	atxa-core:posX "517" ;
+	atxa-core:posY "1445" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.util$Shell> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.util$Shell$ShellCommandExecutor> .
+
+_:node17cvbls4bx164 atxa-core:contains _:node17cvbls4bx165 .
+
+_:node17cvbls4bx165 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.util$Shell$ShellCommandExecutor> ;
+	atxa-core:posX "518" ;
+	atxa-core:posY "1463" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.util$Shell$ShellCommandExecutor> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.util$Shell$ShellCommandExecutor.execute()> .
+
+_:node17cvbls4bx165 atxa-core:contains _:node17cvbls4bx34 .
+
+_:node17cvbls4bx34 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#org.apache.hadoop.util$Shell$ShellCommandExecutor.execute()> ;
+	atxa-core:posX "519" ;
+	atxa-core:posY "1481" .
+
+atxa-core:docRoot atxa-core:contains _:node17cvbls4bx166 .
+
+_:node17cvbls4bx166 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.lang> ;
+	atxa-core:posX "1284" ;
+	atxa-core:posY "1430" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#java.lang> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#java.lang$Class> .
+
+_:node17cvbls4bx166 atxa-core:contains _:node17cvbls4bx167 .
+
+_:node17cvbls4bx167 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.lang$Class> ;
+	atxa-core:posX "1290" ;
+	atxa-core:posY "1455" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#java.lang$Class> atxa-core:contains <http://www.architexa.com/rdf/jdt-wkspc#java.lang$Class.forName(String,boolean,ClassLoader,)> .
+
+_:node17cvbls4bx167 atxa-core:contains _:node17cvbls4bx162 .
+
+_:node17cvbls4bx162 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#java.lang$Class.forName(String,boolean,ClassLoader,)> ;
+	atxa-core:posX "1291" ;
+	atxa-core:posY "1473" .
+
+@prefix atxa-rse-eclipse: <http://www.architexa.com/rdf/rse-eclipse#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atxa-jdt-wkspc: <http://www.architexa.com/rdf/jdt-wkspc#> .
+@prefix atxa-core: <http://www.architexa.com/rdf/core#> .
+@prefix atxa: <http://www.architexa.com/rdf/> .
+@prefix atxa-jdt: <http://www.architexa.com/rdf/jdt#> .
+
+<http://www.architexa.com/rdf/rse-eclipse#Simple TaskTracker JvmManager Child Class.atxa> a atxa-core:reloFile ;
+	atxa-core:contains _:node17cvbls4bx3 , _:node17cvbls4bx2 , _:node17cvbls4bx5 , _:node17cvbls4bx18 , _:node17cvbls4bx17 , _:node17cvbls4bx4 , _:node17cvbls4bx8 , _:node17cvbls4bx22 , _:node17cvbls4bx23 , _:node17cvbls4bx21 , _:node17cvbls4bx26 , _:node17cvbls4bx27 , _:node17cvbls4bx25 , _:node17cvbls4bx32 , _:node17cvbls4bx28 , _:node17cvbls4bx12 , _:node17cvbls4bx37 , _:node17cvbls4bx38 , _:node17cvbls4bx39 , _:node17cvbls4bx36 , _:node17cvbls4bx56 , _:node17cvbls4bx57 , _:node17cvbls4bx58 , _:node17cvbls4bx59 , _:node17cvbls4bx60 , _:node17cvbls4bx61 , _:node17cvbls4bx62 , _:node17cvbls4bx63 , _:node17cvbls4bx65 , _:node17cvbls4bx75 , _:node17cvbls4bx77 , _:node17cvbls4bx79 , _:node17cvbls4bx80 , _:node17cvbls4bx81 , _:node17cvbls4bx71 , _:node17cvbls4bx73 , _:node17cvbls4bx74 , _:node17cvbls4bx67 , _:node17cvbls4bx69 , _:node17cvbls4bx84 , _:node17cvbls4bx55 , _:node17cvbls4bx47 , _:node17cvbls4bx87 , _:node17cvbls4bx89 , _:node17cvbls4bx90 , _:node17cvbls4bx91 , _:node17cvbls4bx92 , _:node17cvbls4bx93 , _:node17cvbls4bx49 , _:node17cvbls4bx54 , _:node17cvbls4bx145 , _:node17cvbls4bx140 , _:node17cvbls4bx139 , _:node17cvbls4bx41 , _:node17cvbls4bx40 , _:node17ct3amqvx5413 , _:node17ct3amqvx5414 , _:node17cvbls4bx14 , _:node17ct3amqvx9777 , _:node17cvbls4bx35 , _:node17ct3amqvx5410 , _:node17ct3amqvx9780 , _:node17ct3amqvx9781 , _:node17ct3amqvx5409 , _:node17cvbls4bx134 , _:node17cvbls4bx150 , _:node17cvbls4bx16 , _:node17cvbls4bx20 , _:node17cvbls4bx151 , _:node17ct3amqvx7187 , _:node17ct3amqvx7188 , _:node17ct3amqvx9782 , _:node17ct3amqvx9783 , _:node17cvbls4bx149 , _:node17cvbls4bx10 , _:node17ct3amqvx9784 , _:node17cvbls4bx24 , _:node17cvbls4bx95 , _:node17cvbls4bx104 , _:node17cvbls4bx105 , _:node17cvbls4bx106 , _:node17cvbls4bx108 , _:node17cvbls4bx112 , _:node17cvbls4bx114 , _:node17cvbls4bx117 , _:node17cvbls4bx118 , _:node17cvbls4bx119 , _:node17cvbls4bx110 , _:node17cvbls4bx121 , _:node17cvbls4bx116 , _:node17cvbls4bx123 , _:node17cvbls4bx126 , _:node17ct3amqvx11826 , _:node17ct3amqvx11827 , _:node17ct3amqvx11828 , _:node17cvbls4bx124 , _:node17cvbls4bx128 , _:node17cvbls4bx129 , _:node17cvbls4bx131 , _:node17cvbls4bx138 , _:node17cvbls4bx136 , _:node17ct3amqvx7180 , _:node17ct3amqvx7181 , _:node17ct3amqvx7182 , _:node17ct3amqvx9787 , _:node17ct3amqvx9788 , _:node17ct3amqvx12009 , _:node17cvbls4bx132 , _:node17ct3amqvx3932 , _:node17ct3amqvx3935 , _:node17ct3amqvx3934 , _:node17ct3amqvx5993 , _:node17ct3amqvx5994 , _:node17ct3amqvx5995 , _:node17ct3amqvx5996 , _:node17ct3amqvx7183 , _:node17ct3amqvx7185 , _:node17ct3amqvx5992 , _:node17ct3amqvx7184 , _:node17ct3amqvx7186 , _:node17ct3amqvx9789 , _:node17cvbls4bx94 , _:node17cvbls4bx45 , _:node17cvbls4bx51 , _:node17cvbls4bx53 , _:node17cvbls4bx43 , _:node17ct3amqvx3933 , _:node17ct3amqvx5989 , _:node17ct3amqvx7639 , _:node17ct3amqvx9774 , _:node17ct3amqvx9775 , _:node17ct3amqvx9776 , _:node17cvbls4bx44 , _:node17ct3amqvx14176 , _:node17ct3amqvx14175 , _:node17ct3amqvx12568 , _:node17ct3amqvx14170 , _:node17ct3amqvx12567 , _:node17ct3amqvx14172 , _:node17ct3amqvx14173 , _:node17ct3amqvx14174 , _:node17ct3amqvx14394 , _:node17ct3amqvx14719 , _:node17ct3amqvx14171 , _:node17cvbls4bx1 , _:node17cvbls4bx154 , _:node17cvbls4bx153 , _:node17cvbls4bx152 , _:node17cvbls4bx156 , _:node17cvbls4bx160 , _:node17cvbls4bx158 , _:node17cvbls4bx157 , _:node17cvbls4bx34 , _:node17cvbls4bx165 , _:node17cvbls4bx164 , _:node17cvbls4bx163 , _:node17cvbls4bx162 , _:node17cvbls4bx167 , _:node17cvbls4bx166 , atxa-core:docRoot , _:node17cvbls4bx3 , _:node17cvbls4bx2 , _:node17cvbls4bx5 , _:node17cvbls4bx18 , _:node17cvbls4bx17 , _:node17cvbls4bx4 , _:node17cvbls4bx8 , _:node17cvbls4bx22 , _:node17cvbls4bx23 , _:node17cvbls4bx21 , _:node17cvbls4bx26 , _:node17cvbls4bx27 , _:node17cvbls4bx25 , _:node17cvbls4bx32 , _:node17cvbls4bx28 , _:node17cvbls4bx12 , _:node17cvbls4bx37 , _:node17cvbls4bx38 , _:node17cvbls4bx39 , _:node17cvbls4bx36 , _:node17cvbls4bx56 , _:node17cvbls4bx57 , _:node17cvbls4bx58 , _:node17cvbls4bx59 , _:node17cvbls4bx60 , _:node17cvbls4bx61 , _:node17cvbls4bx62 , _:node17cvbls4bx63 , _:node17cvbls4bx65 , _:node17cvbls4bx75 , _:node17cvbls4bx77 , _:node17cvbls4bx79 , _:node17cvbls4bx80 , _:node17cvbls4bx81 , _:node17cvbls4bx71 , _:node17cvbls4bx73 , _:node17cvbls4bx74 , _:node17cvbls4bx67 , _:node17cvbls4bx69 , _:node17cvbls4bx84 , _:node17cvbls4bx55 , _:node17cvbls4bx47 , _:node17cvbls4bx87 , _:node17cvbls4bx89 , _:node17cvbls4bx90 , _:node17cvbls4bx91 , _:node17cvbls4bx92 , _:node17cvbls4bx93 , _:node17cvbls4bx49 , _:node17cvbls4bx54 , _:node17cvbls4bx145 , _:node17cvbls4bx140 , _:node17cvbls4bx139 , _:node17cvbls4bx41 , _:node17cvbls4bx40 , _:node17ct3amqvx5413 , _:node17ct3amqvx5414 , _:node17cvbls4bx14 , _:node17ct3amqvx9777 , _:node17cvbls4bx35 , _:node17ct3amqvx5410 , _:node17ct3amqvx9780 , _:node17ct3amqvx9781 , _:node17ct3amqvx5409 , _:node17cvbls4bx134 , _:node17cvbls4bx150 , _:node17cvbls4bx16 , _:node17cvbls4bx20 , _:node17cvbls4bx151 , _:node17ct3amqvx7187 , _:node17ct3amqvx7188 , _:node17ct3amqvx9782 , _:node17ct3amqvx9783 , _:node17cvbls4bx149 , _:node17cvbls4bx10 , _:node17ct3amqvx9784 , _:node17cvbls4bx24 , _:node17cvbls4bx95 , _:node17cvbls4bx104 , _:node17cvbls4bx105 , _:node17cvbls4bx106 , _:node17cvbls4bx108 , _:node17cvbls4bx112 , _:node17cvbls4bx114 , _:node17cvbls4bx117 , _:node17cvbls4bx118 , _:node17cvbls4bx119 , _:node17cvbls4bx110 , _:node17cvbls4bx121 , _:node17cvbls4bx116 , _:node17cvbls4bx123 , _:node17cvbls4bx126 , _:node17ct3amqvx11826 , _:node17ct3amqvx11827 , _:node17ct3amqvx11828 , _:node17cvbls4bx124 , _:node17cvbls4bx128 , _:node17cvbls4bx129 , _:node17cvbls4bx131 , _:node17cvbls4bx138 , _:node17cvbls4bx136 , _:node17ct3amqvx7180 , _:node17ct3amqvx7181 , _:node17ct3amqvx7182 , _:node17ct3amqvx9787 , _:node17ct3amqvx9788 , _:node17ct3amqvx12009 , _:node17cvbls4bx132 , _:node17ct3amqvx3932 , _:node17ct3amqvx3935 , _:node17ct3amqvx3934 , _:node17ct3amqvx5993 , _:node17ct3amqvx5994 , _:node17ct3amqvx5995 , _:node17ct3amqvx5996 , _:node17ct3amqvx7183 , _:node17ct3amqvx7185 , _:node17ct3amqvx5992 , _:node17ct3amqvx7184 , _:node17ct3amqvx7186 , _:node17ct3amqvx9789 , _:node17cvbls4bx94 , _:node17cvbls4bx45 , _:node17cvbls4bx51 , _:node17cvbls4bx53 , _:node17cvbls4bx43 , _:node17ct3amqvx3933 , _:node17ct3amqvx5989 , _:node17ct3amqvx7639 , _:node17ct3amqvx9774 , _:node17ct3amqvx9775 , _:node17ct3amqvx9776 , _:node17cvbls4bx44 , _:node17ct3amqvx14176 , _:node17ct3amqvx14175 , _:node17ct3amqvx12568 , _:node17ct3amqvx14170 , _:node17ct3amqvx12567 , _:node17ct3amqvx14172 , _:node17ct3amqvx14173 , _:node17ct3amqvx14174 , _:node17ct3amqvx14394 , _:node17ct3amqvx14719 , _:node17ct3amqvx14171 , _:node17cvbls4bx1 , _:node17cvbls4bx154 , _:node17cvbls4bx153 , _:node17cvbls4bx152 , _:node17cvbls4bx156 , _:node17cvbls4bx160 , _:node17cvbls4bx158 , _:node17cvbls4bx157 , _:node17cvbls4bx34 , _:node17cvbls4bx165 , _:node17cvbls4bx164 , _:node17cvbls4bx163 , _:node17cvbls4bx162 , _:node17cvbls4bx167 , _:node17cvbls4bx166 , atxa-core:docRoot , _:node17cvbls4bx6 , _:node17cvbls4bx7 , _:node17cvbls4bx9 , _:node17cvbls4bx11 , _:node17cvbls4bx13 , _:node17cvbls4bx15 , _:node17cvbls4bx19 , _:node17cvbls4bx29 , _:node17cvbls4bx33 , _:node17cvbls4bx64 , _:node17cvbls4bx66 , _:node17cvbls4bx68 , _:node17cvbls4bx70 , _:node17cvbls4bx72 , _:node17cvbls4bx76 , _:node17cvbls4bx78 , _:node17cvbls4bx82 , _:node17cvbls4bx83 , _:node17cvbls4bx85 , _:node17cvbls4bx86 , _:node17cvbls4bx88 , _:node17cvbls4bx146 , _:node17cvbls4bx141 , _:node17cvbls4bx144 , _:node17cvbls4bx42 , _:node17ct3amqvx5226 , _:node17ct3amqvx4203 , _:node17ct3amqvx5155 , _:node17ct3amqvx8334 , _:node17ct3amqvx8375 , _:node17ct3amqvx8727 , _:node17ct3amqvx8566 , _:node17ct3amqvx8818 , _:node17ct3amqvx8859 , _:node17cvbls4bx96 , _:node17cvbls4bx99 , _:node17cvbls4bx100 , _:node17cvbls4bx101 , _:node17cvbls4bx102 , _:node17cvbls4bx103 , _:node17cvbls4bx107 , _:node17cvbls4bx109 , _:node17cvbls4bx111 , _:node17cvbls4bx113 , _:node17cvbls4bx115 , _:node17cvbls4bx120 , _:node17cvbls4bx122 , _:node17cvbls4bx125 , _:node17cvbls4bx127 , _:node17ct3amqvx3497 , _:node17cvbls4bx130 , _:node17cvbls4bx133 , _:node17cvbls4bx135 , _:node17ct3amqvx3795 , _:node17ct3amqvx7801 , _:node17ct3amqvx7882 , _:node17ct3amqvx3594 , _:node17ct3amqvx6057 , _:node17ct3amqvx6138 , _:node17ct3amqvx6359 , _:node17ct3amqvx8083 , _:node17ct3amqvx11387 , _:node17cvbls4bx46 , _:node17cvbls4bx48 , _:node17cvbls4bx52 , _:node17ct3amqvx7760 , _:node17ct3amqvx13718 , _:node17ct3amqvx13352 , _:node17ct3amqvx14261 , _:node17cvbls4bx155 , _:node17cvbls4bx159 , _:node17cvbls4bx161 , _:node17cvbls4bx6 , _:node17cvbls4bx7 , _:node17cvbls4bx9 , _:node17cvbls4bx11 , _:node17cvbls4bx13 , _:node17cvbls4bx15 , _:node17cvbls4bx19 , _:node17cvbls4bx29 , _:node17cvbls4bx33 , _:node17cvbls4bx64 , _:node17cvbls4bx66 , _:node17cvbls4bx68 , _:node17cvbls4bx70 , _:node17cvbls4bx72 , _:node17cvbls4bx76 , _:node17cvbls4bx78 , _:node17cvbls4bx82 , _:node17cvbls4bx83 , _:node17cvbls4bx85 , _:node17cvbls4bx86 , _:node17cvbls4bx88 , _:node17cvbls4bx146 , _:node17cvbls4bx141 , _:node17cvbls4bx144 , _:node17cvbls4bx42 , _:node17ct3amqvx5226 , _:node17ct3amqvx4203 , _:node17ct3amqvx5155 , _:node17ct3amqvx8334 , _:node17ct3amqvx8375 , _:node17ct3amqvx8727 , _:node17ct3amqvx8566 , _:node17ct3amqvx8818 , _:node17ct3amqvx8859 , _:node17cvbls4bx96 , _:node17cvbls4bx99 , _:node17cvbls4bx100 , _:node17cvbls4bx101 , _:node17cvbls4bx102 , _:node17cvbls4bx103 , _:node17cvbls4bx107 , _:node17cvbls4bx109 , _:node17cvbls4bx111 , _:node17cvbls4bx113 , _:node17cvbls4bx115 , _:node17cvbls4bx120 , _:node17cvbls4bx122 , _:node17cvbls4bx125 , _:node17cvbls4bx127 , _:node17ct3amqvx3497 , _:node17cvbls4bx130 , _:node17cvbls4bx133 , _:node17cvbls4bx135 , _:node17ct3amqvx3795 , _:node17ct3amqvx7801 , _:node17ct3amqvx7882 , _:node17ct3amqvx3594 , _:node17ct3amqvx6057 , _:node17ct3amqvx6138 , _:node17ct3amqvx6359 , _:node17ct3amqvx8083 , _:node17ct3amqvx11387 , _:node17cvbls4bx46 , _:node17cvbls4bx48 , _:node17cvbls4bx52 , _:node17ct3amqvx7760 , _:node17ct3amqvx13718 , _:node17ct3amqvx13352 , _:node17ct3amqvx14261 , _:node17cvbls4bx155 , _:node17cvbls4bx159 , _:node17cvbls4bx161 .
+

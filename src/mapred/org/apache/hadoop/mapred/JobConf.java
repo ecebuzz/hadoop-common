@@ -565,6 +565,22 @@ public class JobConf extends Configuration {
     return getInt("mapred.job.reuse.jvm.num.tasks", 1);
   }
   
+  //swm
+  /**
+   * Sets the state of jvm cache
+   * @param isOn whether the jvm cache is enabled or not; defaults to false;
+   */
+  public void setJvmCacheEnabled(boolean isOn) {
+	  setBoolean("mapred.jvm.cache.enabled", isOn);
+  }
+  /**
+   * Get the state whether the jvm cache is enabled or not
+   */  
+  public boolean getJvmCacheEnabled() {
+	  return getBoolean("mapred.jvm.cache.enabled", false);
+  }
+  //mws
+  
   /**
    * Get the {@link InputFormat} implementation for the map-reduce job,
    * defaults to {@link TextInputFormat} if not specified explicity.

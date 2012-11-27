@@ -61,6 +61,10 @@ class Child {
 
   static volatile boolean isCleanup;
   static String cwd;
+  
+  //swm
+  //public static final String JVM_CACHE_ENABLED = "mapred.jvm.cache.enabled";
+  //mws
 
   static boolean logIsSegmented(JobConf job) {
     return (job.getNumTasksToExecutePerJvm() != 1);
@@ -119,6 +123,9 @@ class Child {
     
     int numTasksToExecute = -1; //-1 signifies "no limit"
     int numTasksExecuted = 0;
+    //swm
+    boolean jvm_cache_enabled = false;
+    //mws
     Runtime.getRuntime().addShutdownHook(new Thread() {
       public void run() {
         try {
@@ -231,6 +238,11 @@ class Child {
         
         numTasksToExecute = job.getNumTasksToExecutePerJvm();
         assert(numTasksToExecute != 0);
+        
+        //swm
+        jvm_cache_enabled = job.getJvmCacheEnabled();
+        assert(jvm_cache_enabled == true || jvm_cache_enabled == false);
+        //mws
 
         task.setConf(job);
 
@@ -265,9 +277,19 @@ class Child {
             return null;
           }
         });
-        if (numTasksToExecute > 0 && ++numTasksExecuted == numTasksToExecute) {
-          break;
+        //swm
+        //if (numTasksToExecute > 0 && ++numTasksExecuted == numTasksToExecute) {
+        //  break;
+        //}
+        numTasksExecuted++;
+        LOG.info("swmlog: Child Jvm " + jvmIdInt +  " is reused " + numTasksExecuted + " times.");
+
+        if (numTasksToExecute > 0 && numTasksExecuted == numTasksToExecute) {
+            	if (!jvm_cache_enabled) {
+            		break;
+            	}
         }
+		// mws
       }
     } catch (FSError e) {
       LOG.fatal("FSError from child", e);
