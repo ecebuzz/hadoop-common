@@ -177,10 +177,18 @@ class Child {
         currentJobSegmented = true;
 
         JvmTask myTask = umbilical.getTask(context);
-        if (myTask.shouldDie()) {
-          break;
-        } else {
+        //swm
+        if (myTask.shouldDie() && !jvm_cache_enabled) {
+            LOG.info("swmlog: myTask.shouldDie() returns true in Child jvm " + jvmIdInt);
+        	break;
+        } //mws
+        else {
           if (myTask.getTask() == null) {
+        	//swm
+        	if(myTask.shouldDie() && jvm_cache_enabled) {
+        		LOG.info("swmlog: myTask.getTask() returns null, but jvm " + jvmIdInt + " is kept alive");
+        	}
+        	//mws
             taskid = null;
             currentJobSegmented = true;
 
@@ -194,6 +202,7 @@ class Child {
             continue;
           }
         }
+        
         idleLoopCount = 0;
         task = myTask.getTask();
         task.setJvmContext(jvmContext);
@@ -249,7 +258,10 @@ class Child {
         // Initiate Java VM metrics
         initMetrics(prefix, jvmId.toString(), job.getSessionId());
 
-        LOG.debug("Creating remote user to execute task: " + job.get("user.name"));
+        //swm
+        //LOG.debug("Creating remote user to execute task: " + job.get("user.name"));
+        LOG.info("swmlog: Creating remote user to execute task: " + job.get("user.name") + " in " + jvmIdInt);
+        //mws
         childUGI = UserGroupInformation.createRemoteUser(job.get("user.name"));
         // Add tokens to new user so that it may execute its task correctly.
         for(Token<?> token : UserGroupInformation.getCurrentUser().getTokens()) {
@@ -282,7 +294,7 @@ class Child {
         //  break;
         //}
         numTasksExecuted++;
-        LOG.info("swmlog: Child Jvm " + jvmIdInt +  " is reused " + numTasksExecuted + " times.");
+        LOG.info("swmlog: Child Jvm " + jvmIdInt +  " is used " + numTasksExecuted + " times.");
 
         if (numTasksToExecute > 0 && numTasksExecuted == numTasksToExecute) {
             	if (!jvm_cache_enabled) {
@@ -338,7 +350,13 @@ class Child {
       // This assumes that on return from Task.run() 
       // there is no more logging done.
       LogManager.shutdown();
+      //swm
+      LOG.info("swmlog: Child Jvm finally shutdown log.");
+      //mws
     }
+    //swm
+    LOG.info("swmlog: Child Jvm exit the main function.");
+    //mws
   }
 
   private static void initMetrics(String prefix, String procName,

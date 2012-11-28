@@ -162,6 +162,9 @@ class JvmManager {
   }
 
   public void killJvm(JVMId jvmId) throws IOException, InterruptedException {
+	//swm
+	  LOG.info("swmlog: Kill Jvm " + jvmId.getId());
+	//mws
     if (jvmId.isMap) {
       mapJvmManager.killJvm(jvmId);
     } else {
@@ -563,11 +566,16 @@ class JvmManager {
         } finally { // handle the exit code
           // although the process has exited before we get here,
           // make sure the entire process group has also been killed.
-          kill();
-          updateOnJvmExit(jvmId, exitCode);
-          LOG.info("JVM : " + jvmId + " exited with exit code " + exitCode
-              + ". Number of tasks it ran: " + numTasksRan);
-          deleteWorkDir(tracker, firstTask);
+        	
+        	//swm
+          //kill();
+        	
+          //updateOnJvmExit(jvmId, exitCode);
+          //LOG.info("JVM : " + jvmId + " exited with exit code " + exitCode
+          //    + ". Number of tasks it ran: " + numTasksRan);
+          //deleteWorkDir(tracker, firstTask);
+        	//mws
+        	LOG.info("swmlog: JVM: " + jvmId + " is kept alive in runChild.");
         }
       }
 

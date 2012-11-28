@@ -3309,6 +3309,9 @@ public class TaskTracker implements MRConstants, TaskUmbilicalProtocol,
       return new JvmTask(null, true);
     }
     RunningJob rjob = runningJobs.get(jvmId.getJobId());
+    
+    //swm: kept the jvm alive even if rjob has finished
+    /*
     if (rjob == null) { //kill the JVM since the job is dead
       LOG.info("Killing JVM " + jvmId + " since job " + jvmId.getJobId() +
                " is dead");
@@ -3319,6 +3322,23 @@ public class TaskTracker implements MRConstants, TaskUmbilicalProtocol,
       }
       return new JvmTask(null, true);
     }
+  	*/
+    boolean jvm_cache_enabled = fConf.getJvmCacheEnabled();
+    if (rjob == null) {
+    	if (jvm_cache_enabled) {
+    	    LOG.info("swmlog: keep the Jvm " + jvmId + " persistent.");
+    	    return new JvmTask(null, false);
+    	} else {
+    		LOG.info("Killing JVM " + jvmId + " since job " + jvmId.getJobId() + " is dead");
+    		try {
+    			jvmManager.killJvm(jvmId);
+    		} catch (InterruptedException e) {
+    			LOG.warn("Failed to kill " + jvmId, e);
+    		}
+    		return new JvmTask(null, true);    		
+    	}
+    }
+    //mws
     TaskInProgress tip = jvmManager.getTaskForJvm(jvmId);
     if (tip == null) {
       return new JvmTask(null, false);
