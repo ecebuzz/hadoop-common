@@ -206,9 +206,9 @@ class JvmManager {
     Map <JVMId, String> jvmIdToPid = 
       new HashMap<JVMId, String>();
     
-    //added by swm
-    boolean enableMapCacheReuse = true;
-    //end of add
+    //swm
+    private final boolean jvmCacheEnabled;
+    //mws
     int maxJvms;
     boolean isMap;
     private final long sleeptimeBeforeSigkill;
@@ -228,6 +228,9 @@ class JvmManager {
       sleeptimeBeforeSigkill =
         tracker.getJobConf().getLong(DELAY_BEFORE_KILL_KEY,
                                      DEFAULT_SLEEPTIME_BEFORE_SIGKILL);
+      //swm
+      jvmCacheEnabled = tracker.getJobConf().getJvmCacheEnabled();
+      //mws
     }
 
     synchronized public void setRunningTaskForJvm(JVMId jvmId, 
@@ -348,7 +351,7 @@ class JvmManager {
       JvmRunner runnerToKill = null;
       
       // added by swm
-      if (t.getTask().isMapTask() && enableMapCacheReuse) {
+      if (t.getTask().isMapTask() && jvmCacheEnabled) {
     	  // favor reusing map jvms of different jobs that enable cache
     	  // try not to kill idle jvm which has cached data
     	  Iterator<Map.Entry<JVMId, JvmRunner>> jvmIter = jvmIdToRunner.entrySet().iterator();
@@ -359,16 +362,16 @@ class JvmManager {
     		  
      		  // check whether it is possible to reuse jvm of a different job
     		  if (!jId.equals(jobId) && !jvmRunner.isBusy() &&
-    				  jvmRunner.ranAll() && jvmRunner.canReuseCache()) {
+    				  jvmRunner.ranAll() && jvmRunner.isJvmCacheReusable()) {
     			  // change the job id of this jvm to the new job id
     			  jvmRunner.jobIds.add(jobId);
     			  jvmRunner.currentJobIdIndex++;
     			  jvmRunner.jvmId.setJobId(jobId);
     			  // reuse the JVM
     			  setRunningTaskForJvm(jvmRunner.jvmId, t); 
-    			  LOG.info("Map cache enabled. No new JVM spawned for jobId/taskid: "
+    			  LOG.info("swmlog: Jvm cache is enabled. No new JVM spawned for jobId/taskid: "
     					  + jobId + "/" + t.getTask().getTaskID()
-    					  + ". Attempting to reuse the cache of: " + jvmRunner.jvmId);
+    					  + ". Attempting to reuse jvm: " + jvmRunner.jvmId);
     			  return;
     		  }
     	  }
@@ -499,11 +502,11 @@ class JvmManager {
       
       JVMId jvmId;
       volatile boolean busy = true;
-      //added by swm
+      //swm
       Vector<JobID> jobIds;
       int currentJobIdIndex;
-      volatile boolean canReuseCache = true;
-      // end of add
+      volatile boolean isJvmCacheReusable = jvmCacheEnabled;
+      // mws
       private ShellCommandExecutor shexec; // shell terminal for running the task
       private Task firstTask;
 
@@ -652,13 +655,13 @@ class JvmManager {
       public boolean ranAll() {
         return(numTasksRan == numTasksToRun);
       }
-      // begin of swm
-      public boolean canReuseCache() {
+      //swm
+      public boolean isJvmCacheReusable() {
     	  //To do: add the logic to determine whether it is possible to reuse cache
     	  //add a private member to the JvmRunner
-    	  return canReuseCache;
+    	  return isJvmCacheReusable;
       }
-      // end of swm
+      //mws
       public void setBusy(boolean busy) {
         this.busy = busy;
       }

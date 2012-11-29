@@ -25,6 +25,9 @@ import java.io.PrintStream;
 import java.net.InetSocketAddress;
 import java.security.PrivilegedExceptionAction;
 import java.util.Arrays;
+//swm
+import java.util.Vector;
+//mws
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.fs.FSError;
@@ -83,6 +86,10 @@ class Child {
     int jvmIdInt = Integer.parseInt(args[4]);
     JVMId jvmId = new JVMId(firstTaskid.getJobID(),firstTaskid.isMap(),jvmIdInt);
     String prefix = firstTaskid.isMap() ? "MapTask" : "ReduceTask";
+    //swm: add a record of received and executed tasks
+    Vector<TaskAttemptID> executedTasks = new Vector<TaskAttemptID>();
+    executedTasks.add(firstTaskid);
+    //mws
     
     cwd = System.getenv().get(TaskRunner.HADOOP_WORK_DIR);
     if (cwd == null) {
@@ -175,18 +182,30 @@ class Child {
       while (true) {
         taskid = null;
         currentJobSegmented = true;
-
-        JvmTask myTask = umbilical.getTask(context);
+        
+        //swm
+        //JvmTask myTask = umbilical.getTask(context);
+        
+        JvmTask myTask;
+        try {
+        	myTask = umbilical.getTask(context);
+        } catch (IOException e) {
+        	LOG.info("swmlog: Child Jvm" + jvmIdInt + " pid " + pid
+        			+ "lost its connection to TaskTracker, exit.");
+        	return;
+        }
         //swm
         if (myTask.shouldDie() && !jvm_cache_enabled) {
-            LOG.info("swmlog: myTask.shouldDie() returns true in Child jvm " + jvmIdInt);
+            LOG.info("swmlog: myTask.shouldDie() returns true in Child jvm " + jvmIdInt
+            		+" pid " + pid);
         	break;
         } //mws
         else {
           if (myTask.getTask() == null) {
         	//swm
         	if(myTask.shouldDie() && jvm_cache_enabled) {
-        		LOG.info("swmlog: myTask.getTask() returns null, but jvm " + jvmIdInt + " is kept alive");
+        		LOG.info("swmlog: myTask.getTask() returns null, but jvm " + jvmIdInt + " is kept alive"
+        				+ " pid " + pid);
         	}
         	//mws
             taskid = null;
@@ -202,7 +221,10 @@ class Child {
             continue;
           }
         }
-        
+        //swm
+        executedTasks.add(myTask.getTask().getTaskID());
+        String strTaskType = myTask.getTask().isMapTask() ? "Map" : "Reduce";
+        //mws        
         idleLoopCount = 0;
         task = myTask.getTask();
         task.setJvmContext(jvmContext);
@@ -260,7 +282,8 @@ class Child {
 
         //swm
         //LOG.debug("Creating remote user to execute task: " + job.get("user.name"));
-        LOG.info("swmlog: Creating remote user to execute task: " + job.get("user.name") + " in " + jvmIdInt);
+        LOG.info("swmlog: Creating remote user to execute " + strTaskType + " task: "
+        		+ job.get("user.name") + " in " + jvmIdInt + " pid " + pid);
         //mws
         childUGI = UserGroupInformation.createRemoteUser(job.get("user.name"));
         // Add tokens to new user so that it may execute its task correctly.
@@ -294,7 +317,8 @@ class Child {
         //  break;
         //}
         numTasksExecuted++;
-        LOG.info("swmlog: Child Jvm " + jvmIdInt +  " is used " + numTasksExecuted + " times.");
+        LOG.info("swmlog: Child Jvm " + jvmIdInt
+        		+ " pid " + pid + " is used " + numTasksExecuted + " times.");
 
         if (numTasksToExecute > 0 && numTasksExecuted == numTasksToExecute) {
             	if (!jvm_cache_enabled) {
