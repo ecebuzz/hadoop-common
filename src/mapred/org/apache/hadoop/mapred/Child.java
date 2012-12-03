@@ -190,36 +190,42 @@ class Child {
         try {
         	myTask = umbilical.getTask(context);
         } catch (IOException e) {
-        	LOG.info("swmlog: Child Jvm" + jvmIdInt + " pid " + pid
-        			+ "lost its connection to TaskTracker, exit.");
-        	return;
+        	LOG.info("swmlog: Child Jvm" + jvmId + " pid " + pid
+        			+ (jvmId.isMap ? " MapJvm" : " ReduceJvm")
+        			+ " lost its connection to TaskTracker, exit.");
+        	break;
         }
+        //mws
         //swm
+        assert(myTask != null);
+        
         if (myTask.shouldDie() && !jvm_cache_enabled) {
-            LOG.info("swmlog: myTask.shouldDie() returns true in Child jvm " + jvmIdInt
-            		+" pid " + pid);
+            LOG.info("swmlog: myTask.shouldDie() returns true" + jvmId
+            		+" pid " + pid 
+            		+ (jvmId.isMap ? " MapJvm " : " ReduceJvm"));
         	break;
         } //mws
-        else {
-          if (myTask.getTask() == null) {
-        	//swm
-        	if(myTask.shouldDie() && jvm_cache_enabled) {
-        		LOG.info("swmlog: myTask.getTask() returns null, but jvm " + jvmIdInt + " is kept alive"
-        				+ " pid " + pid);
-        	}
-        	//mws
-            taskid = null;
-            currentJobSegmented = true;
+				else {
+					if (myTask.getTask() == null) {
+						// swm
+						if (myTask.shouldDie() && jvm_cache_enabled) {
+							LOG.info("swmlog: myTask.getTask() returns null, but jvm "
+									+ jvmId + " is kept alive" + " pid " + pid
+									+ (jvmId.isMap ? " MapJvm " : " ReduceJvm"));
+						}
+						// mws
+						taskid = null;
+						currentJobSegmented = true;
 
-            if (++idleLoopCount >= SLEEP_LONGER_COUNT) {
-              //we sleep for a bigger interval when we don't receive
-              //tasks for a while
-              Thread.sleep(1500);
-            } else {
-              Thread.sleep(500);
-            }
-            continue;
-          }
+						if (++idleLoopCount >= SLEEP_LONGER_COUNT) {
+							// we sleep for a bigger interval when we don't receive
+							// tasks for a while
+							Thread.sleep(1500);
+						} else {
+							Thread.sleep(500);
+						}
+						continue;
+					}
         }
         //swm
         executedTasks.add(myTask.getTask().getTaskID());
@@ -283,7 +289,8 @@ class Child {
         //swm
         //LOG.debug("Creating remote user to execute task: " + job.get("user.name"));
         LOG.info("swmlog: Creating remote user to execute " + strTaskType + " task: "
-        		+ job.get("user.name") + " in " + jvmIdInt + " pid " + pid);
+        		+ job.get("user.name") + " in " + jvmId + " pid " + pid
+        		+ (jvmId.isMap ? " MapJvm " : " ReduceJvm"));
         //mws
         childUGI = UserGroupInformation.createRemoteUser(job.get("user.name"));
         // Add tokens to new user so that it may execute its task correctly.
@@ -317,7 +324,8 @@ class Child {
         //  break;
         //}
         numTasksExecuted++;
-        LOG.info("swmlog: Child Jvm " + jvmIdInt
+        LOG.info("swmlog: Child Jvm " + jvmId
+        		+ (jvmId.isMap ? " MapJvm " : " ReduceJvm")
         		+ " pid " + pid + " is used " + numTasksExecuted + " times.");
 
         if (numTasksToExecute > 0 && numTasksExecuted == numTasksToExecute) {
@@ -358,8 +366,11 @@ class Child {
         umbilical.reportDiagnosticInfo(taskid, baos.toString(), jvmContext);
       }
     } catch (Throwable throwable) {
-      LOG.fatal("Error running child : "
-                + StringUtils.stringifyException(throwable));
+    	//swm
+      //LOG.fatal("Error running child : "
+      //          + StringUtils.stringifyException(throwable));
+      LOG.fatal("Error running child " + jvmId + ": "
+                + StringUtils.stringifyException(throwable));               
       if (taskid != null) {
         Throwable tCause = throwable.getCause();
         String cause = tCause == null 
@@ -367,20 +378,23 @@ class Child {
                        : StringUtils.stringifyException(tCause);
         umbilical.fatalError(taskid, cause, jvmContext);
       }
-    } finally {
-      RPC.stopProxy(umbilical);
-      shutdownMetrics();
-      // Shutting down log4j of the child-vm... 
-      // This assumes that on return from Task.run() 
-      // there is no more logging done.
-      LogManager.shutdown();
-      //swm
-      LOG.info("swmlog: Child Jvm finally shutdown log.");
-      //mws
-    }
+	} finally {
+		// swm
+		LOG.info("swmlog: Child Jvm" + jvmId
+        		+ (jvmId.isMap ? " MapJvm " : " ReduceJvm")
+        		+ " pid " + pid + "finally shutdown log.");
+		// mws
+		RPC.stopProxy(umbilical);
+		shutdownMetrics();
+		// Shutting down log4j of the child-vm...
+		// This assumes that on return from Task.run()
+		// there is no more logging done.
+		LogManager.shutdown();
+	}
     //swm
-    LOG.info("swmlog: Child Jvm exit the main function.");
-    //mws
+		LOG.info("swmlog: Child Jvm" + jvmId
+    		+ (jvmId.isMap ? " MapJvm " : " ReduceJvm")
+    		+ " pid " + pid + "exits the main function.");    //mws
   }
 
   private static void initMetrics(String prefix, String procName,

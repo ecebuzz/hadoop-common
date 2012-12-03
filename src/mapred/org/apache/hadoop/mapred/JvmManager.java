@@ -237,7 +237,16 @@ class JvmManager {
         TaskRunner t) {
       jvmToRunningTask.put(jvmId, t);
       runningTaskToJvm.put(t,jvmId);
-      jvmIdToRunner.get(jvmId).setBusy(true);
+      //swm
+      //jvmIdToRunner.get(jvmId).setBusy(true);
+      try {
+      	jvmIdToRunner.get(jvmId).setBusy(true);
+      } catch (NullPointerException e) {
+      	for (Map.Entry<JVMId, JvmRunner> jvm_info : jvmIdToRunner.entrySet() ) {
+      		LOG.debug("swmlog: JvmId: " + jvm_info.getKey() + " JvmRunner: " + jvm_info.getValue());      		
+      	}
+      }
+      //mws
     }
     
     synchronized public boolean validateTipToJvm(TaskInProgress tip, JVMId jvmId) {
@@ -345,41 +354,19 @@ class JvmManager {
       //When this method is called, we *must* 
       // (1) spawn a new JVM (if we are below the max) 
       // (2) find an idle JVM (that belongs to the same job), or,
-      // (3) kill an idle JVM (from a different job) 
+      // swm
+      // (4) reuse (but not kill ) an idle JVM of a different job with reusable cache
+      // mws
+      // (3) kill an idle JVM (from a different job) //swm if the cached is not reusable //mws
       // (the order of return is in the order above)
       int numJvmsSpawned = jvmIdToRunner.size();
+      //swm
+      LOG.info("swmlog: the number of spawned jvms is " + numJvmsSpawned);
+      //mws
       JvmRunner runnerToKill = null;
-      
-      // added by swm
-      if (t.getTask().isMapTask() && jvmCacheEnabled) {
-    	  // favor reusing map jvms of different jobs that enable cache
-    	  // try not to kill idle jvm which has cached data
-    	  Iterator<Map.Entry<JVMId, JvmRunner>> jvmIter = jvmIdToRunner.entrySet().iterator();
-    	  
-    	  while (jvmIter.hasNext()) {
-    		  JvmRunner jvmRunner = jvmIter.next().getValue();
-    		  JobID jId = jvmRunner.jvmId.getJobId();
-    		  
-     		  // check whether it is possible to reuse jvm of a different job
-    		  if (!jId.equals(jobId) && !jvmRunner.isBusy() &&
-    				  jvmRunner.ranAll() && jvmRunner.isJvmCacheReusable()) {
-    			  // change the job id of this jvm to the new job id
-    			  jvmRunner.jobIds.add(jobId);
-    			  jvmRunner.currentJobIdIndex++;
-    			  jvmRunner.jvmId.setJobId(jobId);
-    			  // reuse the JVM
-    			  setRunningTaskForJvm(jvmRunner.jvmId, t); 
-    			  LOG.info("swmlog: Jvm cache is enabled. No new JVM spawned for jobId/taskid: "
-    					  + jobId + "/" + t.getTask().getTaskID()
-    					  + ". Attempting to reuse jvm: " + jvmRunner.jvmId);
-    			  return;
-    		  }
-    	  }
-      }     
-      // end of added
 
-      if (numJvmsSpawned >= maxJvms) {
-    	//go through the list of JVMs for all jobs.
+      if (numJvmsSpawned >= maxJvms) {         
+        //go through the list of JVMs for all jobs.
         Iterator<Map.Entry<JVMId, JvmRunner>> jvmIter = 
           jvmIdToRunner.entrySet().iterator();
         
@@ -388,44 +375,71 @@ class JvmManager {
           JobID jId = jvmRunner.jvmId.getJobId();
           //look for a free JVM for this job; if one exists then just break
           if (jId.equals(jobId) && !jvmRunner.isBusy() && !jvmRunner.ranAll()){
-            setRunningTaskForJvm(jvmRunner.jvmId, t); //reserve the JVM
+          	setRunningTaskForJvm(jvmRunner.jvmId, t); //reserve the JVM
             LOG.info("No new JVM spawned for jobId/taskid: " + 
                      jobId+"/"+t.getTask().getTaskID() +
-                     ". Attempting to reuse: " + jvmRunner.jvmId);
+                     ". Attempting to reuse: " + jvmRunner.jvmId
+                     //swm
+                     + " pid " + jvmIdToPid.get(jvmRunner.jvmId));
+            		 		 //mws
             return;
           }
+          // swm (4)
+					if (t.getTask().isMapTask() && jvmCacheEnabled) {
+						// favor reusing map jvms of different jobs that enable cache
+						// check whether it is possible to reuse jvm of a different job
+						// 1) the task is from a different job
+						// 2) jvm is not busy
+						// 3) jvm has not reached its maximum number of tasks to execute
+						// 4) jvm cache is reusable
+						if (!jId.equals(jobId) && !jvmRunner.isBusy()
+								&& !jvmRunner.ranAll() && jvmRunner.isJvmCacheReusable()) {
+							// change the job id of this jvm to the new job id
+							jvmRunner.jobIds.add(jobId);
+							jvmRunner.currentJobIdIndex++;
+							jvmRunner.jvmId.setJobId(jobId);
+							// reuse the JVM
+							setRunningTaskForJvm(jvmRunner.jvmId, t);
+							LOG.info("swmlog: Jvm cache is enabled. No new JVM spawned for jobId/taskid: "
+									+ jobId
+									+ "/"
+									+ t.getTask().getTaskID()
+									+ ". Attempting to reuse jvm: "
+									+ jvmRunner.jvmId
+									+ " pid "
+									+ jvmIdToPid.get(jvmRunner.jvmId));
+							return;
+						}
+					}
+					// mws
+       
           //Cases when a JVM is killed: 
           // (1) the JVM under consideration belongs to the same job 
           //     (passed in the argument). In this case, kill only when
           //     the JVM ran all the tasks it was scheduled to run (in terms
           //     of count).
           // (2) the JVM under consideration belongs to a different job and is
-          //     currently not busy
+          //     currently not busy //swm and the jvm cache is not reusable //mws
           //But in both the above cases, we see if we can assign the current
           //task to an idle JVM (hence we continue the loop even on a match)
           
           if ((jId.equals(jobId) && jvmRunner.ranAll()) ||
-              (!jId.equals(jobId) && !jvmRunner.isBusy())) {
+              //swm (!jId.equals(jobId) && !jvmRunner.isBusy())) { //mws
+        	 (!jId.equals(jobId) && !jvmRunner.isBusy() && !jvmRunner.isJvmCacheReusable())) {
             runnerToKill = jvmRunner;
             spawnNewJvm = true;
-          }     
-        }
+          }
+       }
       } else {
         spawnNewJvm = true;
       }
-/*
- * 
- *           //added by swm
-          // To do: make sure jvmRunner is not GCed
-          if ((jId.equals(jobId) && jvmRunner.ranAll() && !jvmRunner.canReuseCache())) {
-        	  runnerToKill = jvmRunner;
-        	  spawnNewJvm = true;
-          }
-          //end of add
- */
+
       if (spawnNewJvm) {
-        if (runnerToKill != null) {
-          LOG.info("Killing JVM: " + runnerToKill.jvmId);
+        if (runnerToKill != null) {	
+          //swm
+          //LOG.info("Killing JVM: " + runnerToKill.jvmId);
+          LOG.info("swmlog: Killing JVM: " + runnerToKill.jvmId + 
+        		  " pid " + jvmIdToPid.get(runnerToKill.jvmId) );
           killJvmRunner(runnerToKill);
         }
         spawnNewJvm(jobId, env, t);
@@ -571,14 +585,19 @@ class JvmManager {
           // make sure the entire process group has also been killed.
         	
         	//swm
-          //kill();
-        	
-          //updateOnJvmExit(jvmId, exitCode);
-          //LOG.info("JVM : " + jvmId + " exited with exit code " + exitCode
-          //    + ". Number of tasks it ran: " + numTasksRan);
-          //deleteWorkDir(tracker, firstTask);
+        	if (!isJvmCacheReusable()) {
         	//mws
-        	LOG.info("swmlog: JVM: " + jvmId + " is kept alive in runChild.");
+	          kill();
+	          updateOnJvmExit(jvmId, exitCode);
+	          LOG.info("JVM : " + jvmId + " exited with exit code " + exitCode
+	              + ". Number of tasks it ran: " + numTasksRan);
+	          deleteWorkDir(tracker, firstTask);
+	        //swm
+        	} else {
+        		LOG.info("swmlog: Jvm cached is enabled, Jvm " + jvmId + " is kept alive in runChild.");
+        		//BUG? deleteWorkDir(tracker, firstTask);
+        	}
+        	//mws
         }
       }
 

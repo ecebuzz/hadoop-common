@@ -3301,11 +3301,21 @@ public class TaskTracker implements MRConstants, TaskUmbilicalProtocol,
   throws IOException {
     authorizeJVM(context.jvmId.getJobId());
     JVMId jvmId = context.jvmId;
-    LOG.debug("JVM with ID : " + jvmId + " asked for a task");
+    //swm
+    String pid = context.pid;
+    //mws
+    //swm
+    //LOG.debug("JVM with ID : " + jvmId + " asked for a task");
+    LOG.info("swmlog: JVM with ID " + jvmId + " and pid " + pid + " asked for a task");
+    //mws
+    
     // save pid of task JVM sent by child
-    jvmManager.setPidToJvm(jvmId, context.pid);
+    jvmManager.setPidToJvm(jvmId, pid);
     if (!jvmManager.isJvmKnown(jvmId)) {
-      LOG.info("Killing unknown JVM " + jvmId);
+      //swm
+    	//LOG.info("Killing unknown JVM " + jvmId);
+    	LOG.info("swmlog: Killing unknown JVM " + jvmId + " pid " + pid);
+      //mws
       return new JvmTask(null, true);
     }
     RunningJob rjob = runningJobs.get(jvmId.getJobId());
@@ -3326,14 +3336,14 @@ public class TaskTracker implements MRConstants, TaskUmbilicalProtocol,
     boolean jvm_cache_enabled = fConf.getJvmCacheEnabled();
     if (rjob == null) {
     	if (jvm_cache_enabled) {
-    	    LOG.info("swmlog: keep the Jvm " + jvmId + " persistent.");
+    	    LOG.info("swmlog: keep the Jvm " + jvmId + " pid " + pid + " persistent.");
     	    return new JvmTask(null, false);
     	} else {
     		LOG.info("Killing JVM " + jvmId + " since job " + jvmId.getJobId() + " is dead");
     		try {
     			jvmManager.killJvm(jvmId);
     		} catch (InterruptedException e) {
-    			LOG.warn("Failed to kill " + jvmId, e);
+    			LOG.warn("Failed to kill " + jvmId + " pid " + pid, e);
     		}
     		return new JvmTask(null, true);    		
     	}
