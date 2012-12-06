@@ -27,6 +27,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Vector;
+//swm
+import java.util.AbstractMap;
+//mws
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -165,34 +168,71 @@ class JvmManager {
   public boolean shouldChangeJvmBinding(JVMId jvmId) {
   	LOG.info("Querry about the need to change the jvm and job binding" + jvmId);
   	if(jvmId.isMap) {
-  		return mapJvmManager.changeOldJvm;
+  		return mapJvmManager.jvmChangeList.containsKey(jvmId);
   	} else {
-  		return reduceJvmManager.changeOldJvm;
+  		return reduceJvmManager.jvmChangeList.containsKey(jvmId);
   	}
   }
   
-  public JobID getNewJobId(JVMId jvmId) {
-  	LOG.info("Get the new job id for the jvm " + jvmId);
-  	if(jvmId.isMap) {
-  		return mapJvmManager.newJobId;
+  public JobID getNewJobId(JVMId oldJvmId) {
+  	LOG.info("Get the new job id for the jvm " + oldJvmId);
+  	if(oldJvmId.isMap) {
+  		return mapJvmManager.jvmChangeList.get(oldJvmId).getValue();
   	} else {
-  		return reduceJvmManager.newJobId;
+  		return reduceJvmManager.jvmChangeList.get(oldJvmId).getValue();
   	}  	
   }
   
+  public JVMId getNewJvmId(JVMId oldJvmId) {
+  	LOG.info("Get the new jvm id for jvm " + oldJvmId);
+  	if(oldJvmId.isMap) {
+  		return mapJvmManager.jvmChangeList.get(oldJvmId).getKey();
+  	} else {
+  		return reduceJvmManager.jvmChangeList.get(oldJvmId).getKey();
+  	}  	
+  }  
   //mws
   
   
   public void killJvm(JVMId jvmId) throws IOException, InterruptedException {
 	//swm
-	  LOG.info("swmlog: Kill Jvm " + jvmId.getId());
+	  LOG.info("swmlog: Kill Jvm " + jvmId);
 	//mws
     if (jvmId.isMap) {
       mapJvmManager.killJvm(jvmId);
     } else {
       reduceJvmManager.killJvm(jvmId);
     }
+  }
+  
+//  //swm
+//  public void registerJvm(JVMId jvmId , JobID jobId) {
+//  	LOG.info("swmlog: Unregister Jvm " + jvmId);
+//  	if (jvmId.isMap) {
+//  		mapJvmManager.unregisterJvm(jvmId);
+//  	} else {
+//  		reduceJvmManager.unregisterJvm(jvmId);
+//  	}
+//  }
+  
+  public void unregisterJvm(JVMId jvmId) {
+  	LOG.info("swmlog: Unregister Jvm " + jvmId);
+  	if (jvmId.isMap) {
+  		mapJvmManager.unregisterJvm(jvmId);
+  	} else {
+  		reduceJvmManager.unregisterJvm(jvmId);
+  	}
+  }
+  
+  public void removeFromChangeList(JVMId jvmId) {
+  	LOG.info("swmlog: remove old Jvm " +  jvmId + " from the change list");
+  	if (jvmId.isMap) {
+  		mapJvmManager.removeFromChangeList(jvmId);
+  	} else {
+  		reduceJvmManager.removeFromChangeList(jvmId);
+  	}
   }  
+  //mws
 
   /**
    * Adds the task's work dir to the cleanup queue of taskTracker for
@@ -232,6 +272,7 @@ class JvmManager {
     private final boolean jvmCacheEnabled;
     private boolean changeOldJvm;
     private JobID newJobId;
+    private Map<JVMId, Map.Entry<JVMId,JobID>> jvmChangeList;
     //mws
     int maxJvms;
     boolean isMap;
@@ -256,6 +297,7 @@ class JvmManager {
       jvmCacheEnabled = tracker.getJobConf().getJvmCacheEnabled();
       changeOldJvm = false;
       newJobId = null;
+      jvmChangeList = new HashMap<JVMId, Map.Entry<JVMId,JobID>>();
       //mws
     }
 
@@ -347,6 +389,20 @@ class JvmManager {
         killJvmRunner(jvmRunner);
       }
     }
+    
+    //swm
+    synchronized public void unregisterJvm(JVMId jvmId) {
+    	if (jvmIdToRunner.containsKey(jvmId)) {
+    		removeJvm(jvmId);
+    	}
+    }
+    
+    synchronized public void removeFromChangeList(JVMId jvmId) {
+    	if (jvmChangeList.containsKey(jvmId)) {
+    		jvmChangeList.remove(jvmId);
+    	}
+    }
+    //mws
     
     synchronized public void stop() throws IOException, InterruptedException {
       //since the kill() method invoked later on would remove
@@ -444,10 +500,6 @@ class JvmManager {
 
 							//To do: remove the old jvmRunner, add this new jvmRunner back
 							// change the data structure of JVMId to reflect the change of the mapping from job to jvm
-							
-							//swm
-							//entry.setValue(jvmRunner);
-							//mws
 
 							changeOldJvm = true;
 							spawnNewJvm = false;
@@ -481,6 +533,7 @@ class JvmManager {
       }
 
       //swm
+     
       if(changeOldJvm) {
         assert(jvmIdToChange != null);
         LOG.info("swmlog: try to update the data structure on TT side");
@@ -488,12 +541,13 @@ class JvmManager {
         JVMId oldJvmId = new JVMId(jvmIdToChange);
         LOG.info("swmlog: oldJvmId: " + jvmIdToChange);
         // change the job id of JVMId and JvmRunner
-        
+       
 				if (jvmIdToRunner.containsKey(jvmIdToChange)) {
 					//swm: the key of jvmIdToRunner is a mutable type
 					// change the value of the key does not change its location in the Map
 					// we have to remove, modify, and add it (overhead?)
-					JvmRunner jvmRunner = jvmIdToRunner.remove(jvmIdToChange);
+
+	        JvmRunner jvmRunner = jvmIdToRunner.remove(jvmIdToChange);
 					jvmRunner.jvmId.setJobId(jobId);
 					LOG.info("swmlog: Change the job id of Jvm " + oldJvmId
       				+ " to " + jvmIdToChange);
@@ -504,6 +558,9 @@ class JvmManager {
 	        // to do: need to change the Child jvm part to update the change of JvmId
 	        jvmIdToRunner.put(jvmRunner.jvmId, jvmRunner);
 	        setRunningTaskForJvm(jvmRunner.jvmId, t);
+	        
+	        // record the mapping from the old jvm id to the new jvm id
+	        jvmChangeList.put(oldJvmId, new AbstractMap.SimpleEntry<JVMId,JobID >(jvmIdToChange,jobId));
 
 					LOG.info("swmlog: Jvm cache is enabled. No new JVM spawned for jobId/taskid: "
 							+ jobId
@@ -517,6 +574,7 @@ class JvmManager {
 				}
     }
       //mws
+
       if (spawnNewJvm) {
         if (runnerToKill != null) {	
           //swm

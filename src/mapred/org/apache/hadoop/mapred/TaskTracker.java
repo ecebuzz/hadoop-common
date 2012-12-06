@@ -3318,6 +3318,9 @@ public class TaskTracker implements MRConstants, TaskUmbilicalProtocol,
     JVMId jvmId = context.jvmId;
     //swm
     String pid = context.pid;
+    JvmAction jvmAction = JvmAction.Noop;
+		JobID newJobId = null;
+		JVMId newJvmId = null;
     //mws
     //swm
     //LOG.debug("JVM with ID : " + jvmId + " asked for a task");
@@ -3329,14 +3332,35 @@ public class TaskTracker implements MRConstants, TaskUmbilicalProtocol,
     //swm
     //LOG.info("swmlog: JVM " + jvmId + " is bound to pid " + pid);
     //mws
-    if (!jvmManager.isJvmKnown(jvmId)) {
-      //swm
-    	//LOG.info("Killing unknown JVM " + jvmId);
-    	LOG.info("swmlog: Killing unknown JVM " + jvmId + " pid " + pid);
+		if (!jvmManager.isJvmKnown(jvmId)) {
+			// swm
+			// LOG.info("Killing unknown JVM " + jvmId);
+			if (jvmManager.shouldChangeJvmBinding(jvmId)) {
+				jvmManager.unregisterJvm(jvmId);
+				newJobId = jvmManager.getNewJobId(jvmId);
+				newJvmId = jvmManager.getNewJvmId(jvmId);
+				assert(newJvmId != jvmId);
+				jvmManager.removeFromChangeList(jvmId);
+				jvmAction = JvmAction.Change;
+
+				LOG.info("swmlog: instruct the jvm " + jvmId + " pid " + pid
+						+ " to change the jvm id to be " + newJvmId
+						+ " and the bound job id to be " + newJobId);
+			} else {
+				LOG.info("swmlog: Killing unknown JVM " + jvmId + " pid " + pid);
+				return new JvmTask(null, JvmAction.Die);
+			}
       //mws
-      return new JvmTask(null, JvmAction.Die);
     }
-    RunningJob rjob = runningJobs.get(jvmId.getJobId());
+		//swm
+    //RunningJob rjob = runningJobs.get(jvmId.getJobId());
+		RunningJob rjob = null;
+		if(jvmAction == JvmAction.Change) {
+			rjob = runningJobs.get(newJvmId.getJobId());
+		} else {
+			rjob = runningJobs.get(jvmId.getJobId());
+		}
+    //mws
     
     //swm: kept the jvm alive even if rjob has finished
     /*
@@ -3354,18 +3378,9 @@ public class TaskTracker implements MRConstants, TaskUmbilicalProtocol,
     boolean jvm_cache_enabled = fConf.getJvmCacheEnabled();
     if (rjob == null) {
 			if (jvm_cache_enabled) {
-				if (jvmManager.shouldChangeJvmBinding(jvmId)) {
-					JobID tmpJobId = jvmManager.getNewJobId(jvmId);
-					LOG.info("swmlog: instruct the jvm " + jvmId
-							+" pid " + pid
-							+ " to change the bound job id to be "
-							+ tmpJobId);
-					return new JvmTask(null, JvmAction.Change, tmpJobId);
-				} else {
 					LOG.info("swmlog: keep the Jvm " + jvmId + " pid " + pid
 							+ " persistent.");
 					return new JvmTask(null, JvmAction.Noop);
-				}
 			} else {
     		LOG.info("Killing JVM " + jvmId + " since job " + jvmId.getJobId() + " is dead");
     		try {
@@ -3386,10 +3401,12 @@ public class TaskTracker implements MRConstants, TaskUmbilicalProtocol,
     	return new JvmTask(null, JvmAction.Noop);
     }
     if (tasks.get(tip.getTask().getTaskID()) != null) { //is task still present
-      LOG.info("JVM with ID: " + jvmId + " given task: " + 
-          tip.getTask().getTaskID());
-      //swm return new JvmTask(tip.getTask(), false);
-      return new JvmTask(tip.getTask(), JvmAction.Noop);
+      //swm LOG.info("JVM with ID: " + jvmId + " given task: " + 
+      //    tip.getTask().getTaskID());
+      //return new JvmTask(tip.getTask(), false);
+    	LOG.info("JVM with ID: " + jvmId + "(changed to" + newJvmId 
+    			+ ") given task: " + tip.getTask().getTaskID());
+      return new JvmTask(tip.getTask(), jvmAction);
     } else {
       LOG.info("Killing JVM with ID: " + jvmId + " since scheduled task: " + 
           tip.getTask().getTaskID() + " is " + tip.taskStatus.getRunState());
