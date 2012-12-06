@@ -22,11 +22,16 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.text.NumberFormat;
-
+//swm
+import java.util.ArrayList;
+//mws
 
 class JVMId extends ID {
   boolean isMap;
-  JobID jobId;
+  JobID jobId; //swm: current job id //mws
+  //swm
+  ArrayList<JobID> jobIds; // record the jobs that have been assigned to this jvm
+  //mws
   private static final String JVM = "jvm";
   private static NumberFormat idFormat = NumberFormat.getInstance();
   static {
@@ -38,6 +43,10 @@ class JVMId extends ID {
     super(id);
     this.isMap = isMap;
     this.jobId = jobId;
+    //swm
+    this.jobIds = new ArrayList<JobID>();
+    this.jobIds.add(jobId);
+    //mws
   }
   
   public JVMId (String jtIdentifier, int jobId, boolean isMap, int id) {
@@ -46,7 +55,20 @@ class JVMId extends ID {
     
   public JVMId() { 
     jobId = new JobID();
+    //swm
+    this.jobIds = new ArrayList<JobID>();
+    this.jobIds.add(jobId);    
+    //mws
   }
+  
+  //swm
+  public JVMId( JVMId oldJvmId) {
+  	super(oldJvmId.id);
+  	this.isMap = oldJvmId.isMap;
+  	this.jobId = oldJvmId.jobId;
+  	this.jobIds = new ArrayList<JobID>(oldJvmId.jobIds); 	
+  }
+  //mws
   
   public boolean isMapJVM() {
     return isMap;
@@ -55,11 +77,12 @@ class JVMId extends ID {
     return jobId;
   }
   
-  // added by swm
+  //swm
   public void setJobId(JobID jobId) {
 	  this.jobId = jobId;
+    this.jobIds.add(jobId); 
   }
-  // end of swm
+  //mws
   
   public boolean equals(Object o) {
     if(o == null)

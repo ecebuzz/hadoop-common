@@ -76,6 +76,7 @@ import org.apache.hadoop.ipc.RPC;
 import org.apache.hadoop.ipc.RemoteException;
 import org.apache.hadoop.ipc.Server;
 import org.apache.hadoop.mapred.CleanupQueue.PathDeletionContext;
+import org.apache.hadoop.mapred.JvmTask.JvmAction;
 import org.apache.hadoop.mapred.TaskLog.LogFileDetail;
 import org.apache.hadoop.mapred.TaskLog.LogName;
 import org.apache.hadoop.mapred.TaskStatus.Phase;
@@ -2308,7 +2309,12 @@ public class TaskTracker implements MRConstants, TaskUmbilicalProtocol,
       synchronized (numFreeSlots) {
         numFreeSlots.set(numFreeSlots.get() + numSlots);
         assert (numFreeSlots.get() <= maxSlots);
-        LOG.info("addFreeSlot : current free slots : " + numFreeSlots.get());
+        //swm
+        //LOG.info("addFreeSlot : current free slots : " + numFreeSlots.get());
+        LOG.info("addFreeSlot : current free slots of " 
+        + this
+        + " : " + numFreeSlots.get());
+        //mws
         numFreeSlots.notifyAll();
       }
     }
@@ -3281,12 +3287,21 @@ public class TaskTracker implements MRConstants, TaskUmbilicalProtocol,
   
   private void authorizeJVM(org.apache.hadoop.mapreduce.JobID jobId) 
   throws IOException {
-    String currentJobId = 
+   String currentJobId = 
       UserGroupInformation.getCurrentUser().getUserName();
+  	//swm
+  	//LOG.info("swmlog: Try to authorizeJVM for jobId " + jobId
+  	//				+ " and currentJobId " + currentJobId);
+  	//mws
+   //swm
+   /*
     if (!currentJobId.equals(jobId.toString())) {
       throw new IOException ("JVM with " + currentJobId + 
           " is not authorized for " + jobId);
     }
+    */
+    
+   //mws
   }
 
     
@@ -3306,17 +3321,20 @@ public class TaskTracker implements MRConstants, TaskUmbilicalProtocol,
     //mws
     //swm
     //LOG.debug("JVM with ID : " + jvmId + " asked for a task");
-    LOG.info("swmlog: JVM with ID " + jvmId + " and pid " + pid + " asked for a task");
+    LOG.info("swmlog: JVM " + jvmId + " and pid " + pid + " asked for a task");
     //mws
     
     // save pid of task JVM sent by child
     jvmManager.setPidToJvm(jvmId, pid);
+    //swm
+    //LOG.info("swmlog: JVM " + jvmId + " is bound to pid " + pid);
+    //mws
     if (!jvmManager.isJvmKnown(jvmId)) {
       //swm
     	//LOG.info("Killing unknown JVM " + jvmId);
     	LOG.info("swmlog: Killing unknown JVM " + jvmId + " pid " + pid);
       //mws
-      return new JvmTask(null, true);
+      return new JvmTask(null, JvmAction.Die);
     }
     RunningJob rjob = runningJobs.get(jvmId.getJobId());
     
@@ -3335,32 +3353,48 @@ public class TaskTracker implements MRConstants, TaskUmbilicalProtocol,
   	*/
     boolean jvm_cache_enabled = fConf.getJvmCacheEnabled();
     if (rjob == null) {
-    	if (jvm_cache_enabled) {
-    	    LOG.info("swmlog: keep the Jvm " + jvmId + " pid " + pid + " persistent.");
-    	    return new JvmTask(null, false);
-    	} else {
+			if (jvm_cache_enabled) {
+				if (jvmManager.shouldChangeJvmBinding(jvmId)) {
+					JobID tmpJobId = jvmManager.getNewJobId(jvmId);
+					LOG.info("swmlog: instruct the jvm " + jvmId
+							+" pid " + pid
+							+ " to change the bound job id to be "
+							+ tmpJobId);
+					return new JvmTask(null, JvmAction.Change, tmpJobId);
+				} else {
+					LOG.info("swmlog: keep the Jvm " + jvmId + " pid " + pid
+							+ " persistent.");
+					return new JvmTask(null, JvmAction.Noop);
+				}
+			} else {
     		LOG.info("Killing JVM " + jvmId + " since job " + jvmId.getJobId() + " is dead");
     		try {
     			jvmManager.killJvm(jvmId);
     		} catch (InterruptedException e) {
     			LOG.warn("Failed to kill " + jvmId + " pid " + pid, e);
     		}
-    		return new JvmTask(null, true);    		
+    		return new JvmTask(null, JvmAction.Die);    		
     	}
     }
     //mws
     TaskInProgress tip = jvmManager.getTaskForJvm(jvmId);
+    //swm
+    LOG.info("swmlog: get task " + tip + " for Jvm " + jvmId);
+    //mws
     if (tip == null) {
-      return new JvmTask(null, false);
+      //swm return new JvmTask(null, false);
+    	return new JvmTask(null, JvmAction.Noop);
     }
     if (tasks.get(tip.getTask().getTaskID()) != null) { //is task still present
       LOG.info("JVM with ID: " + jvmId + " given task: " + 
           tip.getTask().getTaskID());
-      return new JvmTask(tip.getTask(), false);
+      //swm return new JvmTask(tip.getTask(), false);
+      return new JvmTask(tip.getTask(), JvmAction.Noop);
     } else {
       LOG.info("Killing JVM with ID: " + jvmId + " since scheduled task: " + 
           tip.getTask().getTaskID() + " is " + tip.taskStatus.getRunState());
-      return new JvmTask(null, true);
+      //swm return new JvmTask(null, true);
+      return new JvmTask(null, JvmAction.Die);
     }
   }
 

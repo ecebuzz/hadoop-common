@@ -45,6 +45,12 @@ class JvmContext implements Writable {
     this.pid = pid;
   }
   
+  //swm
+  //void setJvmId(JVMId id) {
+  //	jvmId = id;
+  //}
+  //mws
+  
   public void readFields(DataInput in) throws IOException {
     jvmId.readFields(in);
     this.pid = Text.readString(in);

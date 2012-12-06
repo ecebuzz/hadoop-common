@@ -177,7 +177,8 @@ class Child {
     
     UserGroupInformation childUGI = null;
 
-    final JvmContext jvmContext = context;
+    //final JvmContext jvmContext = context;
+    JvmContext jvmContext = context;
     try {
       while (true) {
         taskid = null;
@@ -190,7 +191,7 @@ class Child {
         try {
         	myTask = umbilical.getTask(context);
         } catch (IOException e) {
-        	LOG.info("swmlog: Child Jvm" + jvmId + " pid " + pid
+        	LOG.info("swmlog: Child Jvm " + jvmId + " pid " + pid
         			+ (jvmId.isMap ? " MapJvm" : " ReduceJvm")
         			+ " lost its connection to TaskTracker, exit.");
         	break;
@@ -200,15 +201,22 @@ class Child {
         assert(myTask != null);
         
         if (myTask.shouldDie() && !jvm_cache_enabled) {
-            LOG.info("swmlog: myTask.shouldDie() returns true" + jvmId
+            LOG.info("swmlog: myTask.shouldDie " + jvmId
             		+" pid " + pid 
             		+ (jvmId.isMap ? " MapJvm " : " ReduceJvm"));
         	break;
-        } //mws
+        } else if (myTask.shouldChange()) {
+        	jvmId.setJobId(myTask.getNewJobID());
+        	context = new JvmContext(jvmId, pid);
+        	LOG.info("swmlog: myTask.shouldChange " + jvmId
+        				+ " pid " + pid
+            		+ (jvmId.isMap ? " MapJvm " : " ReduceJvm"));
+        	continue;
+        }
 				else {
 					if (myTask.getTask() == null) {
 						// swm
-						if (myTask.shouldDie() && jvm_cache_enabled) {
+						if (myTask.shouldDie() &&  jvm_cache_enabled) {
 							LOG.info("swmlog: myTask.getTask() returns null, but jvm "
 									+ jvmId + " is kept alive" + " pid " + pid
 									+ (jvmId.isMap ? " MapJvm " : " ReduceJvm"));
@@ -233,7 +241,9 @@ class Child {
         //mws        
         idleLoopCount = 0;
         task = myTask.getTask();
-        task.setJvmContext(jvmContext);
+        //swm task.setJvmContext(jvmContext);
+        task.setJvmContext(context);
+        //mws
         taskid = task.getTaskID();
 
         // Create the JobConf and determine if this job gets segmented task logs
@@ -337,7 +347,9 @@ class Child {
       }
     } catch (FSError e) {
       LOG.fatal("FSError from child", e);
-      umbilical.fsError(taskid, e.getMessage(), jvmContext);
+      //swm umbilical.fsError(taskid, e.getMessage(), jvmContext);
+      umbilical.fsError(taskid, e.getMessage(), context);
+      //mws
     } catch (Exception exception) {
       LOG.warn("Error running child", exception);
       try {
@@ -363,7 +375,9 @@ class Child {
       ByteArrayOutputStream baos = new ByteArrayOutputStream();
       exception.printStackTrace(new PrintStream(baos));
       if (taskid != null) {
-        umbilical.reportDiagnosticInfo(taskid, baos.toString(), jvmContext);
+        //swm umbilical.reportDiagnosticInfo(taskid, baos.toString(), jvmContext);
+        umbilical.reportDiagnosticInfo(taskid, baos.toString(), context);
+        //mws
       }
     } catch (Throwable throwable) {
     	//swm
@@ -376,13 +390,15 @@ class Child {
         String cause = tCause == null 
                        ? throwable.getMessage() 
                        : StringUtils.stringifyException(tCause);
-        umbilical.fatalError(taskid, cause, jvmContext);
+        //swm umbilical.fatalError(taskid, cause, jvmContext);
+        umbilical.fatalError(taskid, cause, context);
+        //mws
       }
 	} finally {
 		// swm
-		LOG.info("swmlog: Child Jvm" + jvmId
+		LOG.info("swmlog: Child Jvm " + jvmId
         		+ (jvmId.isMap ? " MapJvm " : " ReduceJvm")
-        		+ " pid " + pid + "finally shutdown log.");
+        		+ " pid " + pid + " finally shutdown log.");
 		// mws
 		RPC.stopProxy(umbilical);
 		shutdownMetrics();
@@ -392,9 +408,9 @@ class Child {
 		LogManager.shutdown();
 	}
     //swm
-		LOG.info("swmlog: Child Jvm" + jvmId
+		LOG.info("swmlog: Child Jvm " + jvmId
     		+ (jvmId.isMap ? " MapJvm " : " ReduceJvm")
-    		+ " pid " + pid + "exits the main function.");    //mws
+    		+ " pid " + pid + " exits the main function.");    //mws
   }
 
   private static void initMetrics(String prefix, String procName,

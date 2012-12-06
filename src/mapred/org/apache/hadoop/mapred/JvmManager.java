@@ -161,6 +161,28 @@ class JvmManager {
     }
   }
 
+  //swm
+  public boolean shouldChangeJvmBinding(JVMId jvmId) {
+  	LOG.info("Querry about the need to change the jvm and job binding" + jvmId);
+  	if(jvmId.isMap) {
+  		return mapJvmManager.changeOldJvm;
+  	} else {
+  		return reduceJvmManager.changeOldJvm;
+  	}
+  }
+  
+  public JobID getNewJobId(JVMId jvmId) {
+  	LOG.info("Get the new job id for the jvm " + jvmId);
+  	if(jvmId.isMap) {
+  		return mapJvmManager.newJobId;
+  	} else {
+  		return reduceJvmManager.newJobId;
+  	}  	
+  }
+  
+  //mws
+  
+  
   public void killJvm(JVMId jvmId) throws IOException, InterruptedException {
 	//swm
 	  LOG.info("swmlog: Kill Jvm " + jvmId.getId());
@@ -208,6 +230,8 @@ class JvmManager {
     
     //swm
     private final boolean jvmCacheEnabled;
+    private boolean changeOldJvm;
+    private JobID newJobId;
     //mws
     int maxJvms;
     boolean isMap;
@@ -230,6 +254,8 @@ class JvmManager {
                                      DEFAULT_SLEEPTIME_BEFORE_SIGKILL);
       //swm
       jvmCacheEnabled = tracker.getJobConf().getJvmCacheEnabled();
+      changeOldJvm = false;
+      newJobId = null;
       //mws
     }
 
@@ -238,7 +264,12 @@ class JvmManager {
       jvmToRunningTask.put(jvmId, t);
       runningTaskToJvm.put(t,jvmId);
       //swm
-      //jvmIdToRunner.get(jvmId).setBusy(true);
+      if (jvmIdToRunner.get(jvmId) == null ) {
+      	LOG.debug("Jvm " + jvmId + " does not exist in jvmIdToRunner");
+      } else {
+      	jvmIdToRunner.get(jvmId).setBusy(true);
+      }
+      /*
       try {
       	jvmIdToRunner.get(jvmId).setBusy(true);
       } catch (NullPointerException e) {
@@ -246,6 +277,7 @@ class JvmManager {
       		LOG.debug("swmlog: JvmId: " + jvm_info.getKey() + " JvmRunner: " + jvm_info.getValue());      		
       	}
       }
+      */
       //mws
     }
     
@@ -348,6 +380,7 @@ class JvmManager {
         return;
       }
       boolean spawnNewJvm = false;
+
       JobID jobId = t.getTask().getJobID();
       //Check whether there is a free slot to start a new JVM.
       //,or, Kill a (idle) JVM and launch a new one
@@ -361,17 +394,29 @@ class JvmManager {
       // (the order of return is in the order above)
       int numJvmsSpawned = jvmIdToRunner.size();
       //swm
-      LOG.info("swmlog: the number of spawned jvms is " + numJvmsSpawned);
+      LOG.info("swmlog: the number of spawned "
+      		+ (isMap ? " MapJvm " : " ReduceJvm")
+      		+ "jvms is " + numJvmsSpawned);
       //mws
       JvmRunner runnerToKill = null;
+      
+      //swm: change the mapping between job and jvm
+      JVMId jvmIdToChange = null;
+      //mws
 
       if (numJvmsSpawned >= maxJvms) {         
         //go through the list of JVMs for all jobs.
+      	//swm
         Iterator<Map.Entry<JVMId, JvmRunner>> jvmIter = 
           jvmIdToRunner.entrySet().iterator();
         
         while (jvmIter.hasNext()) {
-          JvmRunner jvmRunner = jvmIter.next().getValue();
+          
+        	//swm JvmRunner jvmRunner = jvmIter.next().getValue(); //mws
+        	Map.Entry<JVMId, JvmRunner> entry = jvmIter.next();
+        	JvmRunner jvmRunner = entry.getValue();
+      	
+        	//mws
           JobID jId = jvmRunner.jvmId.getJobId();
           //look for a free JVM for this job; if one exists then just break
           if (jId.equals(jobId) && !jvmRunner.isBusy() && !jvmRunner.ranAll()){
@@ -395,20 +440,20 @@ class JvmManager {
 						if (!jId.equals(jobId) && !jvmRunner.isBusy()
 								&& !jvmRunner.ranAll() && jvmRunner.isJvmCacheReusable()) {
 							// change the job id of this jvm to the new job id
-							jvmRunner.jobIds.add(jobId);
-							jvmRunner.currentJobIdIndex++;
-							jvmRunner.jvmId.setJobId(jobId);
-							// reuse the JVM
-							setRunningTaskForJvm(jvmRunner.jvmId, t);
-							LOG.info("swmlog: Jvm cache is enabled. No new JVM spawned for jobId/taskid: "
-									+ jobId
-									+ "/"
-									+ t.getTask().getTaskID()
-									+ ". Attempting to reuse jvm: "
-									+ jvmRunner.jvmId
-									+ " pid "
-									+ jvmIdToPid.get(jvmRunner.jvmId));
-							return;
+							jvmIdToChange = entry.getKey();
+
+							//To do: remove the old jvmRunner, add this new jvmRunner back
+							// change the data structure of JVMId to reflect the change of the mapping from job to jvm
+							
+							//swm
+							//entry.setValue(jvmRunner);
+							//mws
+
+							changeOldJvm = true;
+							spawnNewJvm = false;
+							newJobId = jobId;
+							LOG.debug("swmlog: changeOldJvm is set to " + changeOldJvm);
+							break;
 						}
 					}
 					// mws
@@ -430,10 +475,48 @@ class JvmManager {
             spawnNewJvm = true;
           }
        }
+
       } else {
         spawnNewJvm = true;
       }
 
+      //swm
+      if(changeOldJvm) {
+        assert(jvmIdToChange != null);
+        LOG.info("swmlog: try to update the data structure on TT side");
+
+        JVMId oldJvmId = new JVMId(jvmIdToChange);
+        LOG.info("swmlog: oldJvmId: " + jvmIdToChange);
+        // change the job id of JVMId and JvmRunner
+        
+				if (jvmIdToRunner.containsKey(jvmIdToChange)) {
+					//swm: the key of jvmIdToRunner is a mutable type
+					// change the value of the key does not change its location in the Map
+					// we have to remove, modify, and add it (overhead?)
+					JvmRunner jvmRunner = jvmIdToRunner.remove(jvmIdToChange);
+					jvmRunner.jvmId.setJobId(jobId);
+					LOG.info("swmlog: Change the job id of Jvm " + oldJvmId
+      				+ " to " + jvmIdToChange);
+	        jvmRunner.jobIds.add(jobId);
+	        jvmRunner.currentJobIdIndex++;
+
+					// reuse the JVM
+	        // to do: need to change the Child jvm part to update the change of JvmId
+	        jvmIdToRunner.put(jvmRunner.jvmId, jvmRunner);
+	        setRunningTaskForJvm(jvmRunner.jvmId, t);
+
+					LOG.info("swmlog: Jvm cache is enabled. No new JVM spawned for jobId/taskid: "
+							+ jobId
+							+ "/"
+							+ t.getTask().getTaskID()
+							+ ". Attempting to reuse jvm: "
+							+ jvmRunner.jvmId);
+					return;
+					} else {
+					LOG.info("Error: jvmIdToRunner does not contain oldJvmId " + jvmIdToChange);
+				}
+    }
+      //mws
       if (spawnNewJvm) {
         if (runnerToKill != null) {	
           //swm
