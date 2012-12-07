@@ -205,18 +205,16 @@ class Child {
             		+" pid " + pid 
             		+ (jvmId.isMap ? " MapJvm " : " ReduceJvm"));
         	break;
-        } else if (myTask.shouldChange()) {
-        	jvmId.setJobId(myTask.getNewJobID());
-        	context = new JvmContext(jvmId, pid);
-        	LOG.info("swmlog: myTask.shouldChange " + jvmId
-        				+ " pid " + pid
-            		+ (jvmId.isMap ? " MapJvm " : " ReduceJvm"));
-        	continue;
-        }
-				else {
+				} else if (myTask.shouldChange()) {
+					assert (myTask.getTask() != null);
+					jvmId.setJobId(myTask.getNewJobID());
+					context = new JvmContext(jvmId, pid);
+					LOG.info("swmlog: myTask.shouldChange " + jvmId + " pid " + pid
+							+ (jvmId.isMap ? " MapJvm " : " ReduceJvm"));
+				} else {
 					if (myTask.getTask() == null) {
 						// swm
-						if (myTask.shouldDie() &&  jvm_cache_enabled) {
+						if (myTask.shouldDie() && jvm_cache_enabled) {
 							LOG.info("swmlog: myTask.getTask() returns null, but jvm "
 									+ jvmId + " is kept alive" + " pid " + pid
 									+ (jvmId.isMap ? " MapJvm " : " ReduceJvm"));
@@ -234,42 +232,42 @@ class Child {
 						}
 						continue;
 					}
-        }
-        //swm
-        executedTasks.add(myTask.getTask().getTaskID());
-        String strTaskType = myTask.getTask().isMapTask() ? "Map" : "Reduce";
-        //mws        
-        idleLoopCount = 0;
-        task = myTask.getTask();
-        //swm task.setJvmContext(jvmContext);
-        task.setJvmContext(context);
-        //mws
-        taskid = task.getTaskID();
+				}
+				// swm
+				executedTasks.add(myTask.getTask().getTaskID());
+				String strTaskType = myTask.getTask().isMapTask() ? "Map" : "Reduce";
+				// mws
+				idleLoopCount = 0;
+				task = myTask.getTask();
+				// swm task.setJvmContext(jvmContext);
+				task.setJvmContext(context);
+				// mws
+				taskid = task.getTaskID();
 
-        // Create the JobConf and determine if this job gets segmented task logs
-        final JobConf job = new JobConf(task.getJobFile());
-        currentJobSegmented = logIsSegmented(job);
+				// Create the JobConf and determine if this job gets segmented task logs
+				final JobConf job = new JobConf(task.getJobFile());
+				currentJobSegmented = logIsSegmented(job);
 
-        isCleanup = task.isTaskCleanupTask();
-        // reset the statistics for the task
-        FileSystem.clearStatistics();
-        
-        // Set credentials
-        job.setCredentials(defaultConf.getCredentials());
-        //forcefully turn off caching for localfs. All cached FileSystems
-        //are closed during the JVM shutdown. We do certain
-        //localfs operations in the shutdown hook, and we don't
-        //want the localfs to be "closed"
-        job.setBoolean("fs.file.impl.disable.cache", false);
+				isCleanup = task.isTaskCleanupTask();
+				// reset the statistics for the task
+				FileSystem.clearStatistics();
 
-        // set the jobTokenFile into task
-        task.setJobTokenSecret(JobTokenSecretManager.
-            createSecretKey(jt.getPassword()));
+				// Set credentials
+				job.setCredentials(defaultConf.getCredentials());
+				// forcefully turn off caching for localfs. All cached FileSystems
+				// are closed during the JVM shutdown. We do certain
+				// localfs operations in the shutdown hook, and we don't
+				// want the localfs to be "closed"
+				job.setBoolean("fs.file.impl.disable.cache", false);
 
-        // setup the child's mapred-local-dir. The child is now sandboxed and
-        // can only see files down and under attemtdir only.
-        TaskRunner.setupChildMapredLocalDirs(task, job);
-        
+				// set the jobTokenFile into task
+				task.setJobTokenSecret(JobTokenSecretManager.createSecretKey(jt
+						.getPassword()));
+
+				// setup the child's mapred-local-dir. The child is now sandboxed and
+				// can only see files down and under attemtdir only.
+				TaskRunner.setupChildMapredLocalDirs(task, job);
+
         // setup the child's attempt directories
         localizeTask(task, job, logLocation);
 

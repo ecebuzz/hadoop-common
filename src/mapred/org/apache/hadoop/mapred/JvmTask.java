@@ -45,13 +45,13 @@ public class JvmTask implements Writable {
   public JvmTask(Task t, JvmAction ja) {
   	this.t = t;
   	this.jvmAction = ja;
-  	this.newJobId = new JobID();
+  	this.newJobId = null;
   }
   
   public JvmTask(Task t) {
   	this.t = t;
   	this.jvmAction = JvmAction.Noop;
-  	this.newJobId = new JobID();
+  	this.newJobId = null;
   }
   //mws
   

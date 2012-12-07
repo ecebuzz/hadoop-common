@@ -486,7 +486,8 @@ class JvmManager {
             return;
           }
           // swm (4)
-					if (t.getTask().isMapTask() && jvmCacheEnabled) {
+					if (jvmCacheEnabled) {
+					//if (t.getTask().isMapTask() && jvmCacheEnabled) {
 						// favor reusing map jvms of different jobs that enable cache
 						// check whether it is possible to reuse jvm of a different job
 						// 1) the task is from a different job
@@ -532,48 +533,14 @@ class JvmManager {
         spawnNewJvm = true;
       }
 
-      //swm
-     
-      if(changeOldJvm) {
-        assert(jvmIdToChange != null);
-        LOG.info("swmlog: try to update the data structure on TT side");
-
-        JVMId oldJvmId = new JVMId(jvmIdToChange);
-        LOG.info("swmlog: oldJvmId: " + jvmIdToChange);
-        // change the job id of JVMId and JvmRunner
-       
-				if (jvmIdToRunner.containsKey(jvmIdToChange)) {
-					//swm: the key of jvmIdToRunner is a mutable type
-					// change the value of the key does not change its location in the Map
-					// we have to remove, modify, and add it (overhead?)
-
-	        JvmRunner jvmRunner = jvmIdToRunner.remove(jvmIdToChange);
-					jvmRunner.jvmId.setJobId(jobId);
-					LOG.info("swmlog: Change the job id of Jvm " + oldJvmId
-      				+ " to " + jvmIdToChange);
-	        jvmRunner.jobIds.add(jobId);
-	        jvmRunner.currentJobIdIndex++;
-
-					// reuse the JVM
-	        // to do: need to change the Child jvm part to update the change of JvmId
-	        jvmIdToRunner.put(jvmRunner.jvmId, jvmRunner);
-	        setRunningTaskForJvm(jvmRunner.jvmId, t);
-	        
-	        // record the mapping from the old jvm id to the new jvm id
-	        jvmChangeList.put(oldJvmId, new AbstractMap.SimpleEntry<JVMId,JobID >(jvmIdToChange,jobId));
-
-					LOG.info("swmlog: Jvm cache is enabled. No new JVM spawned for jobId/taskid: "
-							+ jobId
-							+ "/"
-							+ t.getTask().getTaskID()
-							+ ". Attempting to reuse jvm: "
-							+ jvmRunner.jvmId);
-					return;
-					} else {
-					LOG.info("Error: jvmIdToRunner does not contain oldJvmId " + jvmIdToChange);
-				}
-    }
-      //mws
+			// swm
+			if (changeOldJvm) {
+				assert (jvmIdToChange != null);
+				LOG.info("swmlog: try to update the data structure on TT side");
+				changeOldJvm(jvmIdToChange, jobId, env, t);
+				return;
+			}
+			// mws
 
       if (spawnNewJvm) {
         if (runnerToKill != null) {	
@@ -610,26 +577,68 @@ class JvmManager {
           append(jvmIdToRunner.get(jvmId).busy).
           append(" Currently running: "). 
           append(jvmToRunningTask.get(jvmId).getTask().getTaskID().toString());
-      }
-      return details.toString();
-    }
+			}
+			return details.toString();
+		}
 
-    private void spawnNewJvm(JobID jobId, JvmEnv env,  
-        TaskRunner t) {
-      JvmRunner jvmRunner = new JvmRunner(env, jobId, t.getTask());
-      jvmIdToRunner.put(jvmRunner.jvmId, jvmRunner);
-      //spawn the JVM in a new thread. Note that there will be very little
-      //extra overhead of launching the new thread for a new JVM since
-      //most of the cost is involved in launching the process. Moreover,
-      //since we are going to be using the JVM for running many tasks,
-      //the thread launch cost becomes trivial when amortized over all
-      //tasks. Doing it this way also keeps code simple.
-      jvmRunner.setDaemon(true);
-      jvmRunner.setName("JVM Runner " + jvmRunner.jvmId + " spawned.");
-      setRunningTaskForJvm(jvmRunner.jvmId, t);
-      LOG.info(jvmRunner.getName());
-      jvmRunner.start();
-    }
+		private void spawnNewJvm(JobID jobId, JvmEnv env, TaskRunner t) {
+			JvmRunner jvmRunner = new JvmRunner(env, jobId, t.getTask());
+			jvmIdToRunner.put(jvmRunner.jvmId, jvmRunner);
+			// spawn the JVM in a new thread. Note that there will be very little
+			// extra overhead of launching the new thread for a new JVM since
+			// most of the cost is involved in launching the process. Moreover,
+			// since we are going to be using the JVM for running many tasks,
+			// the thread launch cost becomes trivial when amortized over all
+			// tasks. Doing it this way also keeps code simple.
+			jvmRunner.setDaemon(true);
+			jvmRunner.setName("JVM Runner " + jvmRunner.jvmId + " spawned.");
+			setRunningTaskForJvm(jvmRunner.jvmId, t);
+			LOG.info(jvmRunner.getName());
+			jvmRunner.start();
+		}
+
+		private void changeOldJvm(JVMId jvmIdToChange, JobID jobId, JvmEnv env,
+				TaskRunner t) {
+			JVMId oldJvmId = new JVMId(jvmIdToChange);
+			LOG.info("swmlog: oldJvmId: " + jvmIdToChange);
+			// change the job id of JVMId and JvmRunner
+
+			if (jvmIdToRunner.containsKey(jvmIdToChange)) {
+				// swm: the key of jvmIdToRunner is a mutable type
+				// change the value of the key does not change its location in the Map
+				// we have to remove, modify, and add it (overhead?)
+
+				JvmRunner jvmRunner = jvmIdToRunner.remove(jvmIdToChange);
+				jvmRunner.jvmId.setJobId(jobId);
+				LOG.info("swmlog: Change the job id of Jvm " + oldJvmId + " to "
+						+ jvmIdToChange);
+				jvmRunner.jobIds.add(jobId);
+				jvmRunner.currentJobIdIndex++;
+				//jvmRunner.firstTask = t.getTask();
+
+				// reuse the JVM
+				// to do: need to change the Child jvm part to update the change of
+				// JvmId
+				jvmIdToRunner.put(jvmRunner.jvmId, jvmRunner);
+				setRunningTaskForJvm(jvmRunner.jvmId, t);
+
+				// record the mapping from the old jvm id to the new jvm id
+				jvmChangeList.put(oldJvmId, new AbstractMap.SimpleEntry<JVMId, JobID>(
+						jvmIdToChange, jobId));
+
+				LOG.info("swmlog: Jvm cache is enabled. No new JVM spawned for jobId/taskid: "
+						+ jobId
+						+ "/"
+						+ t.getTask().getTaskID()
+						+ ". Attempting to reuse jvm: " + jvmRunner.jvmId);
+				//jvmRunner.start();
+
+			} else {
+				LOG.info("Error: jvmIdToRunner does not contain oldJvmId "
+						+ jvmIdToChange);
+			}
+		}
+    
     synchronized private void updateOnJvmExit(JVMId jvmId, 
         int exitCode) {
       removeJvm(jvmId);

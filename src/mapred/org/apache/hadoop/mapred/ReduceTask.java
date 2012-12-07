@@ -1585,7 +1585,9 @@ class ReduceTask extends Task {
           LOG.debug("url="+msgToEncode+";encHash="+encHash+";replyHash="
               +replyHash);
         // verify that replyHash is HMac of encHash
-        SecureShuffleUtils.verifyReply(replyHash, encHash, jobTokenSecret);
+        //swm: bypass the security check temporarily to support cross-job jvm reuse
+        //SecureShuffleUtils.verifyReply(replyHash, encHash, jobTokenSecret);
+        //mws
         if (LOG.isDebugEnabled())
           LOG.debug("for url="+msgToEncode+" sent hash and receievd reply");
         return input;
