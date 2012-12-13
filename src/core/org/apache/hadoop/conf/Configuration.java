@@ -30,6 +30,8 @@ import java.io.OutputStream;
 import java.io.Reader;
 import java.io.Writer;
 import java.net.URL;
+import java.security.CodeSource;
+import java.security.ProtectionDomain;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
@@ -817,8 +819,34 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
    * @throws ClassNotFoundException if the class is not found.
    */
   public Class<?> getClassByName(String name) throws ClassNotFoundException {
-    return Class.forName(name, true, classLoader);
-  }
+  	//swm: todo: modify the class loading mechanism
+    //return Class.forName(name, true, classLoader);
+  	
+		if (name.startsWith("org.apache.hadoop.examples")) {
+			try {
+				Class<?> cls = Class.forName(name, true, classLoader);
+
+				if (cls != null) {
+					LOG.info("swmlog: classLoader=" + classLoader.toString());
+					LOG.info("swmlog: cls.getName()=" + cls.getName());
+					LOG.info("swmlog: src=" + cls.getProtectionDomain().getCodeSource().getLocation());
+					LOG.info("swmlog: cls.getClassLoader()=" + cls.getClassLoader());
+					LOG.info("swmlog: loc=" + cls.getClassLoader().getResource(cls.getName().replace('.', '/') + ".class"));
+				} else {
+					LOG.info("swmlog: Class.forName(" + name
+							+ ",true,classLoader returns null");
+				}
+				return cls;
+			} catch (ClassNotFoundException e) {
+				LOG.info("swmlog: ClassNotFoundException is caught in getClassByName("
+						+ name);
+				e.printStackTrace();
+				throw e;
+			}
+		} else {
+			return Class.forName(name, true, classLoader);
+		}
+ }
 
   /** 
    * Get the value of the <code>name</code> property
@@ -862,7 +890,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
     if (valueString == null)
       return defaultValue;
     try {
-      return getClassByName(valueString);
+    	return getClassByName(valueString);
     } catch (ClassNotFoundException e) {
       throw new RuntimeException(e);
     }

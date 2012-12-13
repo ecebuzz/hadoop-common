@@ -38,6 +38,13 @@ import java.util.List;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
+//swm
+import java.security.ProtectionDomain;
+import java.security.CodeSource;
+import java.net.URL;
+//mws
+
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.conf.Configuration;
@@ -431,7 +438,25 @@ class MapTask extends Task {
     }
     MapRunnable<INKEY,INVALUE,OUTKEY,OUTVALUE> runner =
       ReflectionUtils.newInstance(job.getMapRunnerClass(), job);
-
+    //swm
+    Class<?> cls = runner.getClass();
+    if (cls != null) {
+			if (cls.getName().startsWith("org.hadoop.examples")) {
+				ProtectionDomain pDomain = cls.getProtectionDomain();
+				CodeSource cSource = pDomain.getCodeSource();
+				URL loc = cSource.getLocation();
+				LOG.info("swmlog: name="
+						+ cls.getName()
+						+ " src="
+						+ loc
+						+ " loc="
+						+ cls.getClassLoader()
+								.getResource(cls.getName().replace('.', '/') + ".class")
+								.toString());
+			}
+		}
+    //mws
+    
     try {
       runner.run(in, new OldOutputCollector(collector, conf), reporter);
       collector.flush();
@@ -719,6 +744,25 @@ class MapTask extends Task {
     org.apache.hadoop.mapreduce.Mapper<INKEY,INVALUE,OUTKEY,OUTVALUE> mapper =
       (org.apache.hadoop.mapreduce.Mapper<INKEY,INVALUE,OUTKEY,OUTVALUE>)
         ReflectionUtils.newInstance(taskContext.getMapperClass(), job);
+    //swm
+		Class<?> cls = mapper.getClass();
+		if (cls != null) {
+			if (cls.getName().startsWith("org.hadoop.examples")) {
+				ProtectionDomain pDomain = cls.getProtectionDomain();
+				CodeSource cSource = pDomain.getCodeSource();
+				URL loc = cSource.getLocation();
+				LOG.info("swmlog: name="
+						+ cls.getName()
+						+ " src="
+						+ loc
+						+ " loc="
+						+ cls.getClassLoader()
+								.getResource(cls.getName().replace('.', '/') + ".class")
+								.toString());
+			}
+		}
+    //mws
+    
     // make the input format
     org.apache.hadoop.mapreduce.InputFormat<INKEY,INVALUE> inputFormat =
       (org.apache.hadoop.mapreduce.InputFormat<INKEY,INVALUE>)

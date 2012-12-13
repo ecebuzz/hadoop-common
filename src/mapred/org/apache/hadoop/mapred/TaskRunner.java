@@ -105,6 +105,11 @@ abstract class TaskRunner extends Thread {
 
   protected JobConf conf;
   JvmManager jvmManager;
+  
+  //swm
+  String cwd; // current working directory
+  String jobTokenFile; // job token file
+  //mws
 
   /** 
    * for cleaning up old map outputs
@@ -123,6 +128,10 @@ abstract class TaskRunner extends Thread {
     this.jvmManager = tracker.getJvmManagerInstance();
     this.localdirs = conf.getLocalDirs();
     taskDistributedCacheManager = rjob.distCacheMgr;
+    //swm
+    this.cwd = null;
+    this.jobTokenFile =null;
+    //mws
   }
 
   public Task getTask() { return t; }
@@ -199,6 +208,10 @@ abstract class TaskRunner extends Thread {
           TaskTracker.getTaskWorkDir(t.getUser(), taskid.getJobID().toString(), 
           taskid.toString(),
           t.isTaskCleanupTask())).toString());
+      
+      //swm: record the working directory as we want to reset the cwd of persistent jvm
+      this.cwd = workDir.toString();
+      //mws
       
       String user = tip.getUGI().getUserName();
       
@@ -560,8 +573,12 @@ abstract class TaskRunner extends Thread {
     env.put(HADOOP_WORK_DIR, workDir.toString());
     //update user configured login-shell properties
     updateUserLoginEnv(errorInfo, user, conf, env);
+    
+    //swm
     // put jobTokenFile name into env
-    String jobTokenFile = conf.get(TokenCache.JOB_TOKENS_FILENAME);
+    //String jobTokenFile = conf.get(TokenCache.JOB_TOKENS_FILENAME);
+    this.jobTokenFile = conf.get(TokenCache.JOB_TOKENS_FILENAME);
+    //mws
     LOG.debug("putting jobToken file name into environment " + jobTokenFile);
     env.put(UserGroupInformation.HADOOP_TOKEN_FILE_LOCATION, jobTokenFile);
     // for the child of task jvm, set hadoop.root.logger
@@ -723,6 +740,11 @@ abstract class TaskRunner extends Thread {
    * @param conf The job configuration.
    * @param workDir Working directory, which is completely deleted.
    */
+  //swm
+  public static void setupWorkDir(JobConf conf, String workDir) throws IOException {
+  	setupWorkDir(conf, new File(workDir));
+  }
+  //mws
   public static void setupWorkDir(JobConf conf, File workDir) throws IOException {
     if (LOG.isDebugEnabled()) {
       LOG.debug("Fully deleting contents of " + workDir);

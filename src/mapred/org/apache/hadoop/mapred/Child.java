@@ -27,6 +27,10 @@ import java.security.PrivilegedExceptionAction;
 import java.util.Arrays;
 //swm
 import java.util.Vector;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.lang.reflect.Method;
+
 //mws
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -61,10 +65,13 @@ class Child {
 
   static volatile TaskAttemptID taskid = null;
   static volatile boolean currentJobSegmented = true;
-
   static volatile boolean isCleanup;
-  static String cwd;
+
+  //swm static String cwd; mws
   
+  //swm
+  static volatile String logLocation = null;
+
   //swm
   //public static final String JVM_CACHE_ENABLED = "mapred.jvm.cache.enabled";
   //mws
@@ -73,6 +80,45 @@ class Child {
     return (job.getNumTasksToExecutePerJvm() != 1);
   }
 
+  //swm: change the child jvm for reusing
+  /*
+  static void ChangeChildJvm(JvmTask myTask)
+  {
+  	LOG.info("Reseting the Child Jvm...");
+  	cwd = myTask
+  			getCurrentWorkingDirectory();
+  	
+  }
+*/
+  //swm
+  /*
+  public static void addURL(URL url) throws Exception {
+    URLClassLoader classLoader
+           = (URLClassLoader) ClassLoader.getSystemClassLoader();
+    Class clazz= URLClassLoader.class;
+
+    // Use reflection
+    Method method= clazz.getDeclaredMethod("addURL", new Class[] { URL.class });
+    method.setAccessible(true);
+    method.invoke(classLoader, new Object[] { url });
+  }*/
+  
+  public static void addURLs(Vector<URL> urls) throws Exception {
+    URLClassLoader classLoader
+           = (URLClassLoader) ClassLoader.getSystemClassLoader();
+    Class clazz= URLClassLoader.class;
+
+    // Use reflection
+    Method method= clazz.getDeclaredMethod("addURL", new Class[] { URL.class });
+    method.setAccessible(true);
+    for (URL l: urls) {
+    	method.invoke(classLoader, new Object[] { l });
+    	LOG.info("swmlog: add classpath: " + l);
+    }
+  }
+  
+  //mws
+  //mws
   public static void main(String[] args) throws Throwable {
     LOG.debug("Child starting");
 
@@ -81,7 +127,10 @@ class Child {
     int port = Integer.parseInt(args[1]);
     final InetSocketAddress address = NetUtils.makeSocketAddr(host, port);
     final TaskAttemptID firstTaskid = TaskAttemptID.forName(args[2]);
-    final String logLocation = args[3];
+    //swm
+    //final String logLocation = args[3];
+    logLocation = args[3];
+    //mws
     final int SLEEP_LONGER_COUNT = 5;
     int jvmIdInt = Integer.parseInt(args[4]);
     JVMId jvmId = new JVMId(firstTaskid.getJobID(),firstTaskid.isMap(),jvmIdInt);
@@ -91,7 +140,7 @@ class Child {
     executedTasks.add(firstTaskid);
     //mws
     
-    cwd = System.getenv().get(TaskRunner.HADOOP_WORK_DIR);
+    String cwd = System.getenv().get(TaskRunner.HADOOP_WORK_DIR);
     if (cwd == null) {
       throw new IOException("Environment variable " + 
                              TaskRunner.HADOOP_WORK_DIR + " is not set");
@@ -99,7 +148,7 @@ class Child {
 
     // file name is passed thru env
     String jobTokenFile = 
-      System.getenv().get(UserGroupInformation.HADOOP_TOKEN_FILE_LOCATION);
+    System.getenv().get(UserGroupInformation.HADOOP_TOKEN_FILE_LOCATION);
     Credentials credentials = 
       TokenCache.loadTokens(jobTokenFile, defaultConf);
     LOG.debug("loading token. # keys =" +credentials.numberOfSecretKeys() + 
@@ -176,7 +225,8 @@ class Child {
     Task task = null;
     
     UserGroupInformation childUGI = null;
-
+    
+    //swm: context will be reset later for reusing jvm in different jobs
     //final JvmContext jvmContext = context;
     JvmContext jvmContext = context;
     try {
@@ -207,10 +257,52 @@ class Child {
         	break;
 				} else if (myTask.shouldChange()) {
 					assert (myTask.getTask() != null);
-					jvmId.setJobId(myTask.getNewJobID());
+					//jvmId.setJobId(myTask.getNewJobID());
+					jvmId.setJobId(myTask.getTask().getJobID());
+					// change the jvm context to reflect the change of jvm id
 					context = new JvmContext(jvmId, pid);
 					LOG.info("swmlog: myTask.shouldChange " + jvmId + " pid " + pid
 							+ (jvmId.isMap ? " MapJvm " : " ReduceJvm"));
+					//swm
+					//logLocation = myTask.getNewLogLocation();
+				  jobTokenFile = myTask.getNewJobTokenFile();
+					
+					//swm: test loading classes in different class path
+					Vector<URL> urls = new Vector<URL>(); 
+					cwd = myTask.getNewWorkingDirectory();
+					urls.add(new File(cwd).toURI().toURL());
+					
+					File jobCacheDir = new File(new Path(jobTokenFile).getParent().toString(),"jars");
+					File[] libs = new File(jobCacheDir, "lib").listFiles();
+			    if (libs != null) {
+			      for (File l : libs) {
+			      	urls.add(l.toURI().toURL());
+			      }
+			    }
+			    urls.add(new File(jobCacheDir , "classes").toURI().toURL());
+			    urls.add(new File(jobCacheDir.getParentFile(),"jars").toURI().toURL());
+					urls.add(jobCacheDir.toURI().toURL());
+					addURLs(urls);
+					
+					
+					credentials = TokenCache.loadTokens(jobTokenFile, defaultConf);
+					LOG.debug("loading new token. # keys ="
+							+ credentials.numberOfSecretKeys() + "; from file="
+							+ jobTokenFile);
+
+					jt = TokenCache.getJobToken(credentials);
+
+					/*SecurityUtil.setTokenService(jt, address);
+					current = UserGroupInformation.getCurrentUser();
+					current.addToken(jt);
+			    taskOwner 
+			     = UserGroupInformation.createRemoteUser(myTask.getTask().getJobID().toString());
+			    taskOwner.addToken(jt);
+			    
+			    // Set the credentials
+			    defaultConf.setCredentials(credentials);					
+					//ChangeChildJvm(myTask);
+					 */
 				} else {
 					if (myTask.getTask() == null) {
 						// swm
@@ -233,14 +325,18 @@ class Child {
 						continue;
 					}
 				}
-				// swm
-				executedTasks.add(myTask.getTask().getTaskID());
-				String strTaskType = myTask.getTask().isMapTask() ? "Map" : "Reduce";
-				// mws
+
 				idleLoopCount = 0;
 				task = myTask.getTask();
+				//swm: current working directory needs to be changed for each task
+				// jobTokenFile needs only one change
+				//swm:
+				cwd = myTask.getNewWorkingDirectory();
+				
 				// swm task.setJvmContext(jvmContext);
 				task.setJvmContext(context);
+				executedTasks.add(task.getTaskID());
+				String strTaskType = task.isMapTask() ? "Map" : "Reduce";
 				// mws
 				taskid = task.getTaskID();
 
@@ -274,7 +370,14 @@ class Child {
         //setupWorkDir actually sets up the symlinks for the distributed
         //cache. After a task exits we wipe the workdir clean, and hence
         //the symlinks have to be rebuilt.
+        
+        //swm
+        LOG.info("swmlog: cwd=" + cwd);
+        LOG.info("swmlog: logLocation=" + logLocation);
+        LOG.info("swmlog: job.getWorkingDirectory()="+job.getWorkingDirectory().toString());
         TaskRunner.setupWorkDir(job, new File(cwd));
+        //TaskRunner.setupWorkDir(job, new File(job.getWorkingDirectory().toString()));
+        //mws
         
         //create the index file so that the log files 
         //are viewable immediately

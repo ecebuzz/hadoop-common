@@ -303,6 +303,9 @@ class JvmManager {
 
     synchronized public void setRunningTaskForJvm(JVMId jvmId, 
         TaskRunner t) {
+    	//swm
+
+    	//mws
       jvmToRunningTask.put(jvmId, t);
       runningTaskToJvm.put(t,jvmId);
       //swm
@@ -614,6 +617,8 @@ class JvmManager {
 						+ jvmIdToChange);
 				jvmRunner.jobIds.add(jobId);
 				jvmRunner.currentJobIdIndex++;
+				LOG.info("swmlog: Change the env of Jvm " + jvmIdToChange);
+				jvmRunner.env = env;
 				//jvmRunner.firstTask = t.getTask();
 
 				// reuse the JVM

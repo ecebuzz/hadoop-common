@@ -3340,6 +3340,7 @@ public class TaskTracker implements MRConstants, TaskUmbilicalProtocol,
 				newJobId = jvmManager.getNewJobId(jvmId);
 				newJvmId = jvmManager.getNewJvmId(jvmId);
 				assert(newJvmId != jvmId);
+				//to do: remove oldJvmId <-> pid from the mapping table
 				jvmManager.setPidToJvm(newJvmId, pid);
 				jvmManager.removeFromChangeList(jvmId);
 				jvmAction = JvmAction.Change;
@@ -3414,11 +3415,24 @@ public class TaskTracker implements MRConstants, TaskUmbilicalProtocol,
       //return new JvmTask(tip.getTask(), false);
     	LOG.info("JVM with ID: " + jvmId + "(changed to" + newJvmId 
     			+ ") given task: " + tip.getTask().getTaskID());
+    	
+    	//String cwd = TaskTracker.getTaskWorkDir(tip.getTask().getUser(), tip.getTask().getJobID().toString(), 
+    	//		tip.getTask().toString(), tip.getTask().isTaskCleanupTask()).toString();
+    	//swm
+    	String cwd = tip.runner.cwd;
+    	String jobTokenFile = tip.runner.jobTokenFile;
+    	//String logLocation = null;
+    	if(jvmAction == JvmAction.Change) {
+    		return new JvmTask(tip.getTask(), jvmAction, cwd, jobTokenFile);
+    	} else {
+    		return new JvmTask(tip.getTask(), jvmAction, cwd); 		
+    	}
+    	/*
     	if (jvmAction == JvmAction.Change) {
     		return new JvmTask(tip.getTask(), jvmAction, newJobId);
     	} else {
     		return new JvmTask(tip.getTask(), jvmAction);    		
-    	}
+    	}*/
     } else {
       LOG.info("Killing JVM with ID: " + jvmId + " since scheduled task: " + 
           tip.getTask().getTaskID() + " is " + tip.taskStatus.getRunState());

@@ -32,26 +32,39 @@ public class JvmTask implements Writable {
   //boolean shouldDie;
   enum JvmAction {Noop, Die, Change};
   JvmAction jvmAction;
-  JobID newJobId;
+  
+  //swm: include the environment variable of this new task
+  //JobID newJobId;
+  
+  //swm: reset the following two environment variables
+  String cwd; // current working directory
+  String jobTokenFile; // job token file
+  //String logLocation; // log location
   //mws
   
   //swm
+  /*
   public JvmTask(Task t, JvmAction ja, JobID jobId) {
   	this.t = t;
   	this.jvmAction = ja;
-  	this.newJobId = jobId;
+  	//this.newJobId = jobId;
+  }*/
+  public JvmTask(Task t, JvmAction ja, String cwd, String jobTokenFile) {
+  	this.t = t;
+  	this.jvmAction = ja;
+  	this.cwd = cwd;
+  	this.jobTokenFile = jobTokenFile;
+  }
+  public JvmTask(Task t, JvmAction ja, String cwd) {
+  	this(t,ja,cwd,null);
   }
   
   public JvmTask(Task t, JvmAction ja) {
-  	this.t = t;
-  	this.jvmAction = ja;
-  	this.newJobId = null;
+  	this(t,ja,null,null);
   }
   
   public JvmTask(Task t) {
-  	this.t = t;
-  	this.jvmAction = JvmAction.Noop;
-  	this.newJobId = null;
+  	this(t,JvmAction.Noop,null,null);
   }
   //mws
   
@@ -81,10 +94,24 @@ public class JvmTask implements Writable {
   public boolean shouldChange() {
   	return (jvmAction.equals(JvmAction.Change));
   }
-  
+
+  /*
   public JobID getNewJobID() {
   	return newJobId;
+  }*/
+  
+  public String getNewWorkingDirectory() {
+  	return cwd;
   }
+  
+  public String getNewJobTokenFile() {
+  	return jobTokenFile;
+  }
+
+  /*  
+  public String getNewLogLocation() {
+  	return logLocation;
+  } */
   //mws
  
   // swm:  incorporate a jvm action parameter: new job id to be bound to a jvm
@@ -101,13 +128,6 @@ public class JvmTask implements Writable {
   }
 */
   public void write(DataOutput out) throws IOException {
-  	WritableUtils.writeEnum(out, jvmAction);
-    if (newJobId != null) {
-    	out.writeBoolean(true);
-    	newJobId.write(out);
-    } else {
-    	out.writeBoolean(false);
-    }
     if (t != null) {
       out.writeBoolean(true);
       out.writeBoolean(t.isMapTask());
@@ -115,8 +135,12 @@ public class JvmTask implements Writable {
     } else {
       out.writeBoolean(false);
     }
-
-  }
+		WritableUtils.writeEnum(out, jvmAction);
+		WritableUtils.writeString(out, cwd);
+		if (jvmAction == JvmAction.Change) {
+			WritableUtils.writeString(out, jobTokenFile);
+		}
+ }
   //swm
   /*
   public void readFields(DataInput in) throws IOException {
@@ -134,13 +158,7 @@ public class JvmTask implements Writable {
   }
   */
   public void readFields(DataInput in) throws IOException {
-  	jvmAction = WritableUtils.readEnum(in, JvmAction.class);
-    boolean newJobComing = in.readBoolean();
-    if (newJobComing) {
-    	newJobId = JobID.read(in);
-    	//newJobId.readFields(in);
-    }
-    boolean taskComing = in.readBoolean();
+     boolean taskComing = in.readBoolean();
     if (taskComing) {
       boolean isMap = in.readBoolean();
       if (isMap) {
@@ -149,6 +167,11 @@ public class JvmTask implements Writable {
         t = new ReduceTask();
       }
       t.readFields(in);
+    }
+    jvmAction = WritableUtils.readEnum(in, JvmAction.class);
+    cwd = WritableUtils.readString(in);
+    if (jvmAction == JvmAction.Change) {
+    	jobTokenFile = WritableUtils.readString(in);
     }
   }
 }
